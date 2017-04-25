@@ -1,3 +1,3 @@
-Schedule is a project in WeiCha.
+Schedule is a project in Weixin.
 
 Add Github repository.
