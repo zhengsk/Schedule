@@ -1,0 +1,21 @@
+{
+  "name": "schedule",
+  "version": "1.0.0",
+  "description": "schedule for weixin.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@git.zsk.io:zsk526/schedule.git"
+  },
+  "keywords": [
+    "schedule"
+  ],
+  "author": "zsk",
+  "license": "ISC",
+  "dependencies": {
+    "vux": "^2.2.1"
+  }
+}
