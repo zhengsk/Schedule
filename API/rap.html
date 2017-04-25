@@ -1,0 +1,173 @@
+
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF8">
+    <title></title>
+    <style type="text/css">
+        #container {
+            margin: 8px;
+        }
+
+        .param-table {
+            background: #E6E6E6;
+            border: 1px solid #FFF;
+            margin: 12px 0;
+            border-collapse: collapse;
+        }
+
+        .param-table th {
+            background: gray;
+            color: #FFF;
+            font-size: 14px;
+            font-weight: bold;
+            text-align: center;
+            border: 1px solid #FFF;
+            padding: 5px;
+        }
+
+        .param-table td {
+            border-collapse: collapse;
+            border: 1px solid #FFF;
+            font-size: 12px;
+            padding: 5px;
+        }
+
+        .param-table .th-name {
+            min-width: 140px;
+        }
+
+        .param-table .th-identifier {
+            min-width: 140px;
+        }
+
+        .param-table .th-type {
+            min-width: 100px;
+        }
+
+        .param-table .th-remark {
+            min-width: 200px;
+        }
+
+        .param-table .td-name {}
+
+        .param-table .td-identifier {}
+
+        .param-table .td-type   { color: #990000; }
+
+        .param-table .td-remark { color: #666; }
+
+        .param-table .tr-level-1 { background: #F5F5F5; }
+        .param-table .tr-level-1 .td-identifier { padding-left: 5px; }
+
+        .param-table .tr-level-2 { background: #E6E6E6; }
+        .param-table .tr-level-2 .td-identifier { padding-left: 15px; }
+
+        .param-table .tr-level-3 { background: #CCCCCC; }
+        .param-table .tr-level-3 .td-identifier { padding-left: 25px; }
+
+        .param-table .tr-level-4 { background: #E6E6E6; }
+        .param-table .tr-level-4 .td-identifier { padding-left: 35px; }
+
+        .param-table .tr-level-5 { background: #CCCCCC; }
+        .param-table .tr-level-5 .td-identifier { padding-left: 45px; }
+
+        .param-table .tr-level-6 { background: #E6E6E6; }
+        .param-table .tr-level-6 .td-identifier { padding-left: 55px; }
+
+        .param-table .tr-level-7 { background: #CCCCCC; }
+        .param-table .tr-level-7 .td-identifier { padding-left: 65px; }
+
+        .param-table .tr-level-8 { background: #E6E6E6; }
+        .param-table .tr-level-8 .td-identifier { padding-left: 75px; }
+
+        .param-table .tr-level-9 { background: #CCCCCC; }
+        .param-table .tr-level-9 .td-identifier { padding-left: 85px; }
+
+        .param-table .tr-level-10 { background: #E6E6E6; }
+        .param-table .tr-level-10 .td-identifier { padding-left: 95px; }
+
+        .param-table .tr-level-11 {
+            background: #CCCCCC;
+        }
+        .param-table .tr-level-11 .td-identifier { padding-left: 105px; }
+
+        .param-table .tr-level-12 {
+            background: #E6E6E6;
+        }
+        .param-table .tr-level-12 .td-identifier { padding-left: 115px; }
+
+        .param-table .tr-level-13 {
+            background: #CCCCCC;
+        }
+        .param-table .tr-level-13 .td-identifier { padding-left: 125px; }
+    </style>
+</head>
+<body>
+<div id="container">
+            <div class="module">
+            <h1>1&nbsp;汇报人</h1>
+                            <div class="page">
+                    <h2>1.1&nbsp;项目列表页</h2>
+                                            <div class="action">
+                            <h3>1.1.1&nbsp;项目列表</h3>
+
+                            <h3>URL</h3>
+                            <div></div>
+
+                            <h3>Method</h3>
+                            <div>GET</div>
+
+                            <h3>Description</h3>
+                            <div></div>
+
+                            <h3>Request Param List</h3>
+                            <table class="param-table"><thead><th class="th-name">Name</th><th class="th-identifier">Identifier</th><th class="th-type">Type</th><th class="th-remark">Remark</th></thead><tr class="tr-level-1"><td class="td-name">用户ID</td><td class="td-identifier">userid</td><td class="td-type"></td><td class="td-remark"></td></tr></table>
+
+                            <h3>Response Param List</h3>
+                            <table class="param-table"><thead><th class="th-name">Name</th><th class="th-identifier">Identifier</th><th class="th-type">Type</th><th class="th-remark">Remark</th></thead><tr class="tr-level-1"><td class="td-name">请求结果状态码</td><td class="td-identifier">code</td><td class="td-type">number</td><td class="td-remark">请求结果状态码: 200 成功， 500 失败， 400 没权限， ...</td></tr><tr class="tr-level-1"><td class="td-name">项目列表数组</td><td class="td-identifier">projects</td><td class="td-type">array&lt;object&gt;</td><td class="td-remark"></td></tr><tr class="tr-level-2"><td class="td-name">---项目ID</td><td class="td-identifier">projectId</td><td class="td-type">string</td><td class="td-remark">123 | abcd</td></tr><tr class="tr-level-2"><td class="td-name">---项目名称</td><td class="td-identifier">projectName</td><td class="td-type">string</td><td class="td-remark">南昌国贸天悦</td></tr><tr class="tr-level-1"><td class="td-name">提示信息</td><td class="td-identifier">message</td><td class="td-type">string</td><td class="td-remark">操作成功！ | 没有权限！ | 保存成功！ | ...</td></tr></table>
+                        </div>
+                                    </div>
+                            <div class="page">
+                    <h2>1.2&nbsp;任务列表页</h2>
+                                            <div class="action">
+                            <h3>1.2.1&nbsp;一级: 任务列表</h3>
+
+                            <h3>URL</h3>
+                            <div></div>
+
+                            <h3>Method</h3>
+                            <div>GET</div>
+
+                            <h3>Description</h3>
+                            <div>@type=array_map;</div>
+
+                            <h3>Request Param List</h3>
+                            <table class="param-table"><thead><th class="th-name">Name</th><th class="th-identifier">Identifier</th><th class="th-type">Type</th><th class="th-remark">Remark</th></thead><tr class="tr-level-1"><td class="td-name">一级任务ID</td><td class="td-identifier">taskId</td><td class="td-type">string</td><td class="td-remark">123 | abcd</td></tr></table>
+
+                            <h3>Response Param List</h3>
+                            <table class="param-table"><thead><th class="th-name">Name</th><th class="th-identifier">Identifier</th><th class="th-type">Type</th><th class="th-remark">Remark</th></thead><tr class="tr-level-1"><td class="td-name">二级任务名称数组对象</td><td class="td-identifier">subtasks</td><td class="td-type">array&lt;object&gt;</td><td class="td-remark"></td></tr><tr class="tr-level-2"><td class="td-name">---任务名称</td><td class="td-identifier">subtaskName</td><td class="td-type">string</td><td class="td-remark">井道抹灰收尾工程</td></tr><tr class="tr-level-2"><td class="td-name">---任务ID</td><td class="td-identifier">subtaskId</td><td class="td-type">string</td><td class="td-remark">123 | abcd</td></tr><tr class="tr-level-1"><td class="td-name">提示信息</td><td class="td-identifier">message</td><td class="td-type">string</td><td class="td-remark">操作成功！ | 没有权限！ | 保存成功！ | ...</td></tr><tr class="tr-level-1"><td class="td-name">请求结果状态码</td><td class="td-identifier">code</td><td class="td-type">number</td><td class="td-remark">请求结果状态码: 200 成功， 500 失败， 400 没权限， ...</td></tr></table>
+                        </div>
+                                            <div class="action">
+                            <h3>1.2.2&nbsp;二级: 任务列表</h3>
+
+                            <h3>URL</h3>
+                            <div></div>
+
+                            <h3>Method</h3>
+                            <div>GET</div>
+
+                            <h3>Description</h3>
+                            <div></div>
+
+                            <h3>Request Param List</h3>
+                            <table class="param-table"><thead><th class="th-name">Name</th><th class="th-identifier">Identifier</th><th class="th-type">Type</th><th class="th-remark">Remark</th></thead><tr class="tr-level-1"><td class="td-name">项目ID</td><td class="td-identifier">projectId</td><td class="td-type">string</td><td class="td-remark">123 | abcd</td></tr></table>
+
+                            <h3>Response Param List</h3>
+                            <table class="param-table"><thead><th class="th-name">Name</th><th class="th-identifier">Identifier</th><th class="th-type">Type</th><th class="th-remark">Remark</th></thead><tr class="tr-level-1"><td class="td-name">提示信息</td><td class="td-identifier">message</td><td class="td-type">string</td><td class="td-remark">操作成功！ | 没有权限！ | 保存成功！ | ...</td></tr><tr class="tr-level-1"><td class="td-name">请求结果状态码</td><td class="td-identifier">code</td><td class="td-type">number</td><td class="td-remark">请求结果状态码: 200 成功， 500 失败， 400 没权限， ...</td></tr><tr class="tr-level-1"><td class="td-name">一级任务名称数组对象</td><td class="td-identifier">tasks</td><td class="td-type">array&lt;object&gt;</td><td class="td-remark"></td></tr><tr class="tr-level-2"><td class="td-name">---进度百分比</td><td class="td-identifier">progress</td><td class="td-type">number</td><td class="td-remark">百分比数值： 50 | 30</td></tr><tr class="tr-level-2"><td class="td-name">---预计结束日期</td><td class="td-identifier">expectTimeEnd</td><td class="td-type">number</td><td class="td-remark">时间字符串 | 时间截数值</td></tr><tr class="tr-level-2"><td class="td-name">---实际结束日期</td><td class="td-identifier">actualTimeEnd</td><td class="td-type">number</td><td class="td-remark">时间字符串 | 时间截数值</td></tr><tr class="tr-level-2"><td class="td-name">---实际开始日期</td><td class="td-identifier">actualTimeStart</td><td class="td-type">number</td><td class="td-remark">时间字符串 | 时间截数值</td></tr><tr class="tr-level-2"><td class="td-name">---任务名称</td><td class="td-identifier">taskName</td><td class="td-type">string</td><td class="td-remark">主体工程</td></tr><tr class="tr-level-2"><td class="td-name">---预计开始日期</td><td class="td-identifier">expectTimeStart</td><td class="td-type">number</td><td class="td-remark">时间字符串 | 时间截数值</td></tr><tr class="tr-level-2"><td class="td-name">---任务状态：枚举</td><td class="td-identifier">status</td><td class="td-type">number</td><td class="td-remark">1: 未完成， 2：已完成，3：逾期未完成，4：逾期已完成</td></tr><tr class="tr-level-2"><td class="td-name">---任务ID</td><td class="td-identifier">taskId</td><td class="td-type">string</td><td class="td-remark">123 | abcd</td></tr></table>
+                        </div>
+                                    </div>
+                    </div>
+    </div>
+</body>
+</html>
