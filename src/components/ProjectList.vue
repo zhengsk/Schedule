@@ -5,7 +5,7 @@
       <h1> </h1>
     </div>
     <group title="cell demo">
-      <cell title="Vux" value="Cool" is-link></cell>
+      <cell title="Vux" value="Cool" link="/StatusBar"></cell>
     </group>
   </div>
 </template>
