@@ -5,29 +5,25 @@
       <h1> </h1>
     </div>
     <group title="cell demo">
-      <cell title="Vux" value="Cool" link="/StatusBar"></cell>
+      <cell v-for="i in 20" title="Vux" value="Cool" link="/StatusBar"></cell>
     </group>
   </div>
 </template>
 
 <script>
-import { Group, Cell } from 'vux'
+    import { Group, Cell } from 'vux'
 
-export default {
-  components: {
-    Group,
-    Cell
-  },
-  data () {
-    return {
-      // note: changing this line won't causes changes
-      // with hot-reload because the reloaded component
-      // preserves its current state and we are modifying
-      // its initial state.
-      msg: 'Hello World!'
+    export default {
+        components: {
+            Group,
+            Cell
+        },
+        data () {
+            return {
+                msg: 'Hello World!'
+            }
+        }
     }
-  }
-}
 </script>
 
 <style>

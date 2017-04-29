@@ -3,25 +3,55 @@
 import Vue from 'vue'
 import FastClick from 'fastclick'
 import VueRouter from 'vue-router'
+import Vuex from 'vuex'
 import App from './App'
-import Home from './components/ProjectList'
-import StatusBar from './components/StatusBar'
+import {sync} from 'vuex-router-sync'
+import ProjectList from './components/ProjectList'
 
 Vue.use(VueRouter)
+Vue.use(Vuex)
 
 const routes = [{
-  path: '/',
-  component: Home
-},
-{
-  path: '/StatusBar',
-  component: StatusBar
-}
-]
+    path: '/',
+    component: ProjectList
+}]
 
 const router = new VueRouter({
-  routes
+    routes
 })
+
+let store = new Vuex.Store({
+    modules: {
+    }
+})
+
+store.registerModule('vux', {
+    state: {
+        demoScrollTop: 0,
+        isLoading: false,
+        direction: 'forward'
+    },
+
+    mutations: {
+        updateDemoPosition (state, payload) {
+            state.demoScrollTop = payload.top
+        },
+        updateLoadingStatus (state, payload) {
+            state.isLoading = payload.isLoading
+        },
+        updateDirection (state, payload) {
+            state.direction = payload.direction
+        }
+    },
+
+    actions: {
+        updateDemoPosition ({commit}, top) {
+            commit({type: 'updateDemoPosition', top: top})
+        }
+    }
+})
+
+sync(store, router)
 
 FastClick.attach(document.body)
 
@@ -29,6 +59,7 @@ Vue.config.productionTip = false
 
 /* eslint-disable no-new */
 new Vue({
-  router,
-  render: h => h(App)
+    store,
+    router,
+    render: h => h(App)
 }).$mount('#app-box')
