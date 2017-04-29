@@ -5,10 +5,10 @@
             <loading v-model="isLoading"></loading>
         </div>
 
-        <view-box ref="viewBox" body-padding-top="46px" body-padding-bottom="55px">
+        <view-box ref="viewBox" body-padding-top="26px" body-padding-bottom="56px">
             <x-header
+                class="page-title"
                 slot="header"
-                style="width:100%;position:absolute;left:0;top:0;z-index:100;"
                 :left-options="leftOptions"
                 :right-options="rightOptions"
                 :title="title"
@@ -21,19 +21,18 @@
             </transition>
 
 
-            <tabbar class="vux-demo-tabbar" icon-class="vux-center" slot="bottom">
+            <tabbar class="page-tabbar" icon-class="vux-center" slot="bottom">
+
                 <tabbar-item :link="{path:'/'}" :selected="route.path === '/'">
-                    <span class="demo-icon-22 vux-demo-tabbar-icon-home" slot="icon" style="position:relative;top: -2px;">&#xe637;</span>
-                    <span slot="label">Home</span>
+                    <span class="tabbar-item" slot="icon" style="position:relative;top: -2px;"><i class="iconfont icon-gongchengdangan"></i></span>
+                    <span slot="label">项目</span>
                 </tabbar-item>
-                <tabbar-item :link="{path:'/demo'}" badge="9">
-                    <span class="demo-icon-22" slot="icon">&#xe633;</span>
-                    <span slot="label">Demos</span>
+
+                <tabbar-item :link="{path:'/project/donate'}" :selected="route.path === '/report'">
+                    <span class="tabbar-item" slot="icon"><i class="iconfont icon-report"></i></span>
+                    <span slot="label">报表</span>
                 </tabbar-item>
-                <tabbar-item :link="{path:'/project/donate'}" :selected="route.path === '/project/donate'" show-dot>
-                    <span class="demo-icon-22" slot="icon">&#xe630;</span>
-                    <span slot="label">Donate</span>
-                </tabbar-item>
+
             </tabbar>
 
         </view-box>
@@ -91,7 +90,7 @@
 
             rightOptions () {
                 return {
-                    showMore: true
+                    showMore: false
                 }
             },
 
@@ -100,7 +99,7 @@
             },
 
             title () {
-                if (this.route.path === '/') return 'Home'
+                if (this.route.path === '/') return '工程项目'
                 if (this.route.path === '/project/donate') return 'Donate'
                 if (this.route.path === '/demo') return 'Demo list'
                 return this.componentName ? `Demo/${this.componentName}` : 'Demo/~~'
@@ -119,9 +118,10 @@
 
     html,
     body {
+        font-size: 14px;
         height: 100%;
         width: 100%;
-        overflow-x: hidden;
+        overflow: hidden;
     }
 
     #app {
@@ -131,5 +131,38 @@
     .router-view {
         width: 100%;
         top: 46px;
+    }
+
+    .vux-header.page-title {
+        border-bottom: 1px solid #d9d9d9;
+        width:100%;
+        position:absolute;
+        left:0;
+        top:0;
+        z-index:100;
+        background-color: #FFF;
+    }
+
+    .vux-header.page-title .vux-header-title, .vux-header h1 {
+        font-size: 20px;
+        color: #333;
+    }
+
+    .page-tabbar .weui-tabbar__label{
+        font-size: 1rem;
+    }
+
+    .tabbar-item .iconfont{
+        font-size: 24px;
+    }
+
+    .icon-gongchengdangan {
+        position: relative;
+        top: -4px;
+    }
+
+    .icon-report {
+        position: relative;
+        top: -7px;
     }
 </style>

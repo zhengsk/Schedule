@@ -14,6 +14,10 @@ Vue.use(Vuex)
 const routes = [{
     path: '/',
     component: ProjectList
+},
+{
+    path: '/projectList',
+    component: ProjectList
 }]
 
 const router = new VueRouter({

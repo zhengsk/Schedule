@@ -1,20 +1,17 @@
 <template>
-  <div>
-    <div class="vux-demo">
-      <img class="logo" src="../assets/vux_logo.png">
-      <h1> </h1>
+    <div>
+        <group class="project-list">
+            <cell v-for="i in 20" title="Vux" value="Cool" link="/StatusBar">{{i}}</cell>
+        </group>
     </div>
-    <group title="cell demo">
-      <cell v-for="i in 20" title="Vux" value="Cool" link="/StatusBar"></cell>
-    </group>
-  </div>
 </template>
 
 <script>
-    import { Group, Cell } from 'vux'
+    import { XHeader, Group, Cell } from 'vux'
 
     export default {
         components: {
+            XHeader,
             Group,
             Cell
         },
@@ -27,9 +24,9 @@
 </script>
 
 <style>
-.vux-demo {
-  text-align: center;
+.project-list{
 }
+
 .logo {
   width: 100px;
   height: 100px
