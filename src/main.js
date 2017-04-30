@@ -9,13 +9,15 @@ import { AjaxPlugin } from 'vux'
 
 import App from './App'
 import ProjectList from './components/ProjectList'
+import TaskList from './components/TaskList'
 
 Vue.use(VueRouter)
 Vue.use(Vuex)
 Vue.use(AjaxPlugin)
 
 window.API = {
-    projectList: '/static/api/projectList.json'
+    projectList: '/static/api/projectList.json',
+    taskList: '/static/api/taskList.json'
 }
 
 const routes = [{
@@ -23,8 +25,8 @@ const routes = [{
     component: ProjectList
 },
 {
-    path: '/projectList',
-    component: ProjectList
+    path: '/taskList',
+    component: TaskList
 }]
 
 const router = new VueRouter({

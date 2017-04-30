@@ -5,7 +5,7 @@
             <loading v-model="isLoading"></loading>
         </div>
 
-        <view-box ref="viewBox" body-padding-top="26px" body-padding-bottom="56px">
+        <view-box ref="viewBox" body-padding-top="46px" body-padding-bottom="56px">
             <x-header
                 class="page-title"
                 slot="header"
@@ -100,7 +100,7 @@
 
             title () {
                 if (this.route.path === '/') return '工程项目'
-                if (this.route.path === '/project/donate') return 'Donate'
+                if (this.route.path === '/taskList') return 'xxx'
                 if (this.route.path === '/demo') return 'Demo list'
                 return this.componentName ? `Demo/${this.componentName}` : 'Demo/~~'
             }

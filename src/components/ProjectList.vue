@@ -1,7 +1,7 @@
 <template>
     <div>
         <group class="project-list">
-            <cell v-for="item in projectList" :title="item.projectName" :link="'/StatusBar?projectId=' + item.projectId"></cell>
+            <cell v-for="item in projectList" :key="item.projectId" :title="item.projectName" :link="'/taskList?projectId=' + item.projectId"></cell>
         </group>
     </div>
 </template>
@@ -32,7 +32,8 @@
 </script>
 
 <style>
-.project-list{
+.project-list .weui-cells{
+    margin-top: 0;
 }
 
 .logo {
