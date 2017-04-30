@@ -4,12 +4,19 @@ import Vue from 'vue'
 import FastClick from 'fastclick'
 import VueRouter from 'vue-router'
 import Vuex from 'vuex'
-import App from './App'
 import {sync} from 'vuex-router-sync'
+import { AjaxPlugin } from 'vux'
+
+import App from './App'
 import ProjectList from './components/ProjectList'
 
 Vue.use(VueRouter)
 Vue.use(Vuex)
+Vue.use(AjaxPlugin)
+
+window.API = {
+    projectList: '/static/api/projectList.json'
+}
 
 const routes = [{
     path: '/',

@@ -1,7 +1,7 @@
 <template>
     <div>
         <group class="project-list">
-            <cell v-for="i in 20" title="Vux" value="Cool" link="/StatusBar">{{i}}</cell>
+            <cell v-for="item in projectList" :title="item.projectName" :link="'/StatusBar?projectId=' + item.projectId"></cell>
         </group>
     </div>
 </template>
@@ -17,8 +17,16 @@
         },
         data () {
             return {
-                msg: 'Hello World!'
+                projectList: []
             }
+        },
+
+        mounted () {
+            let self = this
+            this.$http(window.API.projectList).then(result => {
+                let data = result.data
+                self.projectList = data.data
+            })
         }
     }
 </script>
