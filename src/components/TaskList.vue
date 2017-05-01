@@ -1,11 +1,13 @@
 <template>
     <div class="task-list-page">
-        <flexbox class="task-filter">
-          <flexbox-item><div class="task-filter-item">主项计划</div></flexbox-item>
-          <flexbox-item><div class="task-filter-item">本月应完成</div></flexbox-item>
-          <flexbox-item><div class="task-filter-item">待评价</div></flexbox-item>
+        <flexbox class="task-filter" :gutter="4">
+          <flexbox-item style="flex: 0 0 26%;"><div class="task-filter-item" @click="listTypePop">主项计划</div></flexbox-item>
+          <flexbox-item style="flex: 0 0 30%;"><div class="task-filter-item">本月应完成</div></flexbox-item>
+          <flexbox-item style="flex: 0 0 20%;"><div class="task-filter-item">待评价</div></flexbox-item>
           <flexbox-item><div class="task-filter-item">周中庆</div></flexbox-item>
         </flexbox>
+
+        <popup-picker :data="taskTypes" :show="showTaskType" @on-hide="showTaskType = false" v-model="taskTypeValue" style="display:none;"></popup-picker>
 
         <ul class="task-list">
             <li v-for="i in 30" class="task-list-item">
@@ -28,7 +30,7 @@
 </template>
 
 <script>
-    import { XHeader, Icon, Flexbox, FlexboxItem, Divider } from 'vux'
+    import { XHeader, Icon, Flexbox, FlexboxItem, PopupPicker, Group } from 'vux'
 
     export default {
         components: {
@@ -36,11 +38,53 @@
             Icon,
             Flexbox,
             FlexboxItem,
-            Divider
+            PopupPicker,
+            Group
         },
         data () {
             return {
-                projectList: []
+                projectList: [],
+
+                taskTypeValue: [],
+                taskTypes: [[{
+                    name: '主项计划',
+                    value: '1'
+                }, {
+                    name: '专项计划',
+                    value: '2'
+                }]],
+
+                progressTypeValue: [],
+                progressTypes: [[{
+                    name: '下月将开始',
+                    value: '2'
+                }, {
+                    name: '下月将开始',
+                    value: '2'
+                }, {
+                    name: '逾期任务',
+                    value: '3'
+                }]],
+
+                evaluateTypeValue: [],
+                evaluateTypes: [[{
+                    name: '评价',
+                    value: '2'
+                }, {
+                    name: '待评价',
+                    value: '2'
+                }, {
+                    name: '已评价',
+                    value: '3'
+                }]],
+
+                showTaskType: false
+            }
+        },
+
+        methods: {
+            listTypePop () {
+                this.showTaskType = true
             }
         },
 
@@ -75,12 +119,34 @@
     }
 
     .task-filter-item {
+        position: relative;
+        box-sizing: border-box;
+        background-color: #F5F5F5;
+        border: 1px solid #DCDCDC;
         font-size: 0.8rem;
         line-height: 1.6rem;
         text-align: center;
         padding: 5px 0;
-        background-color: #CCC;
         border-radius: 3px;
+        text-indent: -1rem;
+    }
+
+    .task-filter-item:active {
+        background-color: #DDD;
+    }
+
+    .task-filter-item::after {
+        content: ' ';
+        display: block;
+        width: 0;
+        height: 0;
+        position: absolute;
+        top: 50%;
+        right: 7px;
+        margin-top: -2px;
+        border: 5px solid #F00;
+        border-color: transparent;
+        border-top: 5px solid #666;
     }
 
     .task-list {
@@ -122,9 +188,9 @@
         display: inline-block;
         position: absolute;
         text-align: center;
-        width: 28px;
-        height: 28px;
-        line-height: 28px;
+        width: 24px;
+        height: 24px;
+        line-height: 24px;
         border-radius: 50%;
         top: 50%;
         left: -28px;
@@ -133,7 +199,7 @@
 
         background-color: #F00;
         font-family:"iconfont" !important;
-        font-size:16px;
+        font-size:14px;
         font-style:normal;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;

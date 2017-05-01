@@ -35,9 +35,4 @@
 .project-list .weui-cells{
     margin-top: 0;
 }
-
-.logo {
-  width: 100px;
-  height: 100px
-}
 </style>

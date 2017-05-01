@@ -149,7 +149,7 @@
     }
 
     .page-tabbar .weui-tabbar__label{
-        font-size: 1rem;
+        font-size: .85rem;
     }
 
     .tabbar-item .iconfont{
