@@ -66,8 +66,20 @@
                     value: '3'
                 }]],
 
-                evaluateTypeValue: [],
+                evaluateValue: [],
                 evaluateTypes: [[{
+                    name: '评价',
+                    value: '2'
+                }, {
+                    name: '待评价',
+                    value: '2'
+                }, {
+                    name: '已评价',
+                    value: '3'
+                }]],
+
+                chargerValue: [],
+                chargerList: [[{
                     name: '评价',
                     value: '2'
                 }, {
