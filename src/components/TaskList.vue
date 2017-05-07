@@ -2,20 +2,20 @@
     <div class="task-list-page">
         <flexbox class="task-filter" :gutter="4">
             <flexbox-item style="flex: 0 0 26%;">
-                <div class="task-filter-item" @click="showPopupPicker('taskTypes')">主项计划</div>
+                <div class="task-filter-item" @click="showPopupPicker('task')">{{taskLabel}}</div>
             </flexbox-item>
             <flexbox-item style="flex: 0 0 30%;">
-                <div class="task-filter-item" @click="showPopupPicker('progressTypes')">本月应完成</div>
+                <div class="task-filter-item" @click="showPopupPicker('progress')">{{progressLabel}}</div>
             </flexbox-item>
             <flexbox-item style="flex: 0 0 20%;">
-                <div class="task-filter-item" @click="showPopupPicker('evaluateTypes')">待评价</div>
+                <div class="task-filter-item" @click="showPopupPicker('evaluate')">{{evaluateLabel}}</div>
             </flexbox-item>
             <flexbox-item>
-                <div class="task-filter-item" @click="showPopupPicker('chargerList')">周中庆</div>
+                <div class="task-filter-item" @click="showPopupPicker('charger')">{{chargerLabel}}</div>
             </flexbox-item>
         </flexbox>
 
-        <popup-picker :data="popupPickerDatas" :show="popupPicker" @on-hide="popupPicker = false" v-model="taskTypeValue" style="display:none;"></popup-picker>
+        <popup-picker :data="popupPickerDatas" v-model="popupPickerValue" :show="popupPickerIsShow" @on-hide="popupPickerHide" @on-change="popupPickerChange" style="display:none;"></popup-picker>
 
         <ul class="task-list">
             <li v-for="i in 30" class="task-list-item">
@@ -53,7 +53,7 @@
             return {
                 projectList: [],
 
-                taskTypeValue: [],
+                taskTypeValue: ['1'],
                 taskTypes: [[{
                     name: '主项计划',
                     value: '1'
@@ -62,10 +62,13 @@
                     value: '2'
                 }]],
 
-                progressTypeValue: [],
+                progressTypeValue: ['1'],
                 progressTypes: [[{
-                    name: '下月将开始',
-                    value: '2'
+                    name: '全部',
+                    value: '0'
+                }, {
+                    name: '本月应完成',
+                    value: '1'
                 }, {
                     name: '下月将开始',
                     value: '2'
@@ -74,10 +77,10 @@
                     value: '3'
                 }]],
 
-                evaluateValue: [],
+                evaluateTypeValue: ['1'],
                 evaluateTypes: [[{
                     name: '评价',
-                    value: '2'
+                    value: '1'
                 }, {
                     name: '待评价',
                     value: '2'
@@ -86,27 +89,84 @@
                     value: '3'
                 }]],
 
-                chargerValue: [],
-                chargerList: [[{
-                    name: '评价',
-                    value: '2'
+                chargerTypeValue: ['abcd'],
+                chargerTypes: [[{
+                    name: '周中庆',
+                    value: 'abcd'
                 }, {
-                    name: '待评价',
-                    value: '2'
+                    name: '周 庆',
+                    value: 'mnopq'
                 }, {
-                    name: '已评价',
-                    value: '3'
+                    name: '某某人',
+                    value: 'xyz'
                 }]],
 
+                popupPickerValue: [],
                 popupPickerDatas: [],
-                popupPicker: false
+                popupPickerIsShow: false
+            }
+        },
+
+        computed: {
+            taskLabel () {
+                return this.getLabel(this.taskTypeValue, this.taskTypes)
+            },
+
+            progressLabel () {
+                return this.getLabel(this.progressTypeValue, this.progressTypes)
+            },
+
+            evaluateLabel () {
+                return this.getLabel(this.evaluateTypeValue, this.evaluateTypes)
+            },
+
+            chargerLabel () {
+                return this.getLabel(this.chargerTypeValue, this.chargerTypes)
             }
         },
 
         methods: {
+            getLabel (value, datas) {
+                datas = datas[0]
+                for (let i = 0, len = datas.length; i < len; i++) {
+                    if (datas[i]['value'] === value[0]) {
+                        return datas[i]['name']
+                    }
+                }
+                return ''
+            },
+
+            popupPickerChange (value) {
+                switch (this.popupPickerDatas) {
+
+                case this.taskTypes:
+                    this.taskTypeValue = value
+                    break
+
+                case this.progressTypes:
+                    this.progressTypeValue = value
+                    break
+
+                case this.evaluateTypes:
+                    this.evaluateTypeValue = value
+                    break
+
+                case this.chargerTypes:
+                    this.chargerTypeValue = value
+                    break
+                }
+            },
+
+            popupPickerHide () {
+                this.popupPickerIsShow = false
+                this.popupPickerDatas = []
+                this.popupPickerValue = []
+            },
+
             showPopupPicker (type) {
-                this.popupPicker = true
-                this.popupPickerDatas = this[type] || null
+                this.popupPickerIsShow = true
+                this.popupPickerDatas = this[type + 'Types'] || []
+                this.popupPickerValue = this[type + 'TypeValue'] || []
             }
         },
 
