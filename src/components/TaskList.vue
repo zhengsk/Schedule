@@ -34,11 +34,15 @@
                 zzz
             </li>
         </ul>
+
+        <div v-transfer-dom>
+            <loading v-model="loading" :text="'加载中...'"></loading>
+        </div>
     </div>
 </template>
 
 <script>
-    import { XHeader, Icon, Flexbox, FlexboxItem, PopupPicker, Group } from 'vux'
+    import { XHeader, Icon, Flexbox, FlexboxItem, PopupPicker, Group, TransferDomDirective as TransferDom, Loading } from 'vux'
 
     export default {
         components: {
@@ -47,8 +51,14 @@
             Flexbox,
             FlexboxItem,
             PopupPicker,
-            Group
+            Group,
+            Loading
         },
+
+        directives: {
+            TransferDom
+        },
+
         data () {
             return {
                 projectList: [],
@@ -103,7 +113,9 @@
 
                 popupPickerValue: [],
                 popupPickerDatas: [],
-                popupPickerIsShow: false
+                popupPickerIsShow: false,
+
+                loading: false
             }
         },
 
@@ -155,6 +167,8 @@
                     this.chargerTypeValue = value
                     break
                 }
+
+                this.loadList()
             },
 
             popupPickerHide () {
@@ -167,6 +181,10 @@
                 this.popupPickerIsShow = true
                 this.popupPickerDatas = this[type + 'Types'] || []
                 this.popupPickerValue = this[type + 'TypeValue'] || []
+            },
+
+            loadList () {
+                this.loading = true
             }
         },
 
