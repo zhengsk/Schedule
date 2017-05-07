@@ -1,13 +1,21 @@
 <template>
     <div class="task-list-page">
         <flexbox class="task-filter" :gutter="4">
-          <flexbox-item style="flex: 0 0 26%;"><div class="task-filter-item" @click="listTypePop">主项计划</div></flexbox-item>
-          <flexbox-item style="flex: 0 0 30%;"><div class="task-filter-item">本月应完成</div></flexbox-item>
-          <flexbox-item style="flex: 0 0 20%;"><div class="task-filter-item">待评价</div></flexbox-item>
-          <flexbox-item><div class="task-filter-item">周中庆</div></flexbox-item>
+            <flexbox-item style="flex: 0 0 26%;">
+                <div class="task-filter-item" @click="showPopupPicker('taskTypes')">主项计划</div>
+            </flexbox-item>
+            <flexbox-item style="flex: 0 0 30%;">
+                <div class="task-filter-item" @click="showPopupPicker('progressTypes')">本月应完成</div>
+            </flexbox-item>
+            <flexbox-item style="flex: 0 0 20%;">
+                <div class="task-filter-item" @click="showPopupPicker('evaluateTypes')">待评价</div>
+            </flexbox-item>
+            <flexbox-item>
+                <div class="task-filter-item" @click="showPopupPicker('chargerList')">周中庆</div>
+            </flexbox-item>
         </flexbox>
 
-        <popup-picker :data="taskTypes" :show="showTaskType" @on-hide="showTaskType = false" v-model="taskTypeValue" style="display:none;"></popup-picker>
+        <popup-picker :data="popupPickerDatas" :show="popupPicker" @on-hide="popupPicker = false" v-model="taskTypeValue" style="display:none;"></popup-picker>
 
         <ul class="task-list">
             <li v-for="i in 30" class="task-list-item">
@@ -90,13 +98,15 @@
                     value: '3'
                 }]],
 
-                showTaskType: false
+                popupPickerDatas: [],
+                popupPicker: false
             }
         },
 
         methods: {
-            listTypePop () {
-                this.showTaskType = true
+            showPopupPicker (type) {
+                this.popupPicker = true
+                this.popupPickerDatas = this[type] || null
             }
         },
 

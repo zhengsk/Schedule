@@ -17,6 +17,8 @@ Vue.use(AjaxPlugin)
 
 window.API = {
     projectList: '/static/api/projectList.json',
+    // projectList: 'http://27.154.54.186:7000/mobile/sch/projectList.action',
+
     taskList: '/static/api/taskList.json'
 }
 
