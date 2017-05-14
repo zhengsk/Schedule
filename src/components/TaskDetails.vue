@@ -11,28 +11,55 @@
 
             <sticky scroll-box="vux_view_box_body" :offset="46" :check-sticky-support="true">
                 <tab :line-width="3">
-                    <tab-item selected>汇报记录</tab-item>
-                    <tab-item>评价记录</tab-item>
+                    <tab-item selected @on-item-click="changeListType('report')">汇报记录</tab-item>
+                    <tab-item @on-item-click="changeListType('evaluate')">评价记录</tab-item>
                 </tab>
             </sticky>
 
-            <ul class="report-list">
-                <li v-for='item in reportList'>
-                    <div class="report-time">
-                        <span>时间：</span><span v-text='item.date'></span>
-                        <span class="report-reportor">{{item.reportor}}</span>
+            <swiper v-model="showListType" :height='swiperHeight' :show-dots="false">
+                <swiper-item>
+                    <div class="tab-swiper vux-center" id="reportWrapper">
+                        <ul class="report-list">
+                            <li v-for='item in reportList'>
+                                <div class="report-time">
+                                    <span>时间：</span><span v-text='item.date'></span>
+                                    <span class="report-reportor">{{item.reportor}}</span>
+                                </div>
+                                <div class="report-info">
+                                    <span class="report-progress">
+                                        进度<br/>
+                                        <span>{{item.progress}}%</span>
+                                    </span>
+                                    <span class="report-comment">
+                                        {{item.comment}}
+                                    </span>
+                                </div>
+                            </li>
+                        </ul>
                     </div>
-                    <div class="report-info">
-                        <span class="report-progress">
-                            进度<br/>
-                            <span>{{item.progress}}%</span>
-                        </span>
-                        <span class="report-comment">
-                            {{item.comment}}
-                        </span>
+                </swiper-item>
+                <swiper-item>
+                    <div class="tab-swiper vux-center" id="evaluateWrapper">
+                        <ul class="report-list">
+                            <li v-for='item in reportList'>
+                                <div class="report-time">
+                                    <span>时间：</span><span v-text='item.date'></span>
+                                    <span class="report-reportor">{{item.reportor}}</span>
+                                </div>
+                                <div class="report-info">
+                                    <span class="report-progress">
+                                        进度<br/>
+                                        <span>{{item.progress}}%</span>
+                                    </span>
+                                    <span class="report-comment">
+                                        {{item.comment}}
+                                    </span>
+                                </div>
+                            </li>
+                        </ul>
                     </div>
-                </li>
-            </ul>
+                </swiper-item>
+            </swiper>
         </div>
 
         <div v-transfer-dom>
@@ -43,7 +70,7 @@
 
 <script>
     import { XHeader, Icon, Flexbox, FlexboxItem, PopupPicker, Sticky, Tab, TabItem, Group, Cell, Card,
-    Divider, TransferDomDirective as TransferDom, Loading } from 'vux'
+     Swiper, SwiperItem, TransferDomDirective as TransferDom, Loading } from 'vux'
 
     export default {
         components: {
@@ -56,7 +83,8 @@
             Tab,
             TabItem,
             Card,
-            Divider,
+            Swiper,
+            SwiperItem,
             Group,
             Cell,
             Loading
@@ -76,12 +104,14 @@
                 charger: null,
                 planEvaluateName: null,
                 reportList: [],
-                evaluateList: []
+                evaluateList: [],
+
+                showListType: 0,
+                swiperHeight: '500px'
             }
         },
 
         computed: {
-
         },
 
         methods: {
@@ -102,6 +132,23 @@
                     this.evaluateList = data.evaluateList
                     this.loading = false
                 })
+            },
+
+            // 切换记录：汇报记录、评价记录
+            changeListType (val) {
+                this.showListType = {
+                    report: 0,
+                    evaluate: 1
+                }[val]
+            }
+        },
+
+        watch: {
+            'showListType' (val) {
+                let id = val === 0 ? 'reportWrapper' : 'evaluateWrapper'
+                this.swiperHeight = document.getElementById(id).offsetHeight + 'px'
+                console.info(this.swiperHeight)
+                document.getElementById(id).parentNode.parentNode.style.height = this.swiperHeight
             }
         },
 
