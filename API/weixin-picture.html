@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+		<link href="assets/css/index.css" rel="stylesheet" type="text/css" />
+		<link rel="stylesheet" href="assets/css/common.css">
+		<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+		
+		<script src="assets/js/jquery-2.1.4.min.js"></script>
+		<script src="assets/js/common.js"></script>
+		<script>
+			function checkPermItem(){
+				var url=location.href.split('#')[0];
+				$.ajax({ 
+					type: "POST", 
+					url: "../sch/getJsSdkSign.action",//JSAPI签名
+					data: {url:url},
+					dataType: "json",
+					success: function (data) {  
+						if(data.success){
+							wx.config({
+							    debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+							    appId: data.data.appId, // 必填，企业号的唯一标识，此处填写企业号corpid
+							    timestamp:data.data.timestamp, // 必填，生成签名的时间戳
+							    nonceStr:data.data.nonceStr, // 必填，生成签名的随机串
+							    signature:data.data.signature,// 必填，签名，见附录1
+							    jsApiList: [
+							    	'openEnterpriseChat',
+									'openEnterpriseContact',
+									'onMenuShareTimeline',
+									'onMenuShareAppMessage',
+									'onMenuShareQQ',
+									'onMenuShareWeibo',
+									'onMenuShareQZone',
+									'startRecord',
+									'stopRecord',
+									'onVoiceRecordEnd',
+									'playVoice',
+									'pauseVoice',
+									'stopVoice',
+									'onVoicePlayEnd',
+									'uploadVoice',
+									'downloadVoice',
+									'chooseImage',
+									'previewImage',
+									'uploadImage',
+									'downloadImage',
+									'translateVoice',
+									'getNetworkType',
+									'openLocation',
+									'getLocation',
+									'hideOptionMenu',
+									'showOptionMenu',
+									'hideMenuItems',
+									'showMenuItems',
+									'hideAllNonBaseMenuItem',
+									'showAllNonBaseMenuItem',
+									'closeWindow',
+									'scanQRCod'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+							});
+						}else{
+							LoadingTip.show(data.error, 1500);
+							
+						}
+						
+					},
+					error: function (XMLHttpRequest, textStatus, errorThrown) { 
+							 alert("查询后台数据报错！"); 
+					} 
+				
+				}); 
+			}
+			
+			
+			function selectImg(){
+				wx.chooseImage({
+				    count: 1, // 默认9
+				    sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+				    sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+				    success: function (res) {
+				        var localIds = res.localIds; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
+				        addElementImg(localIds[0]);
+				        doUpload(localIds);
+				        
+				    }
+				});
+			}
+			
+			wx.error(function(res){
+				alert("注册失败："+res.errMsg);
+			    // config信息验证失败会执行error函数，如签名过期导致验证失败，具体错误信息可以打开config的debug模式查看，也可以在返回的res参数中查看，对于SPA可以在这里更新签名。
+			});
+			
+			wx.ready(function(){
+				
+			    // config信息验证后会执行ready方法，所有接口调用都必须在config接口获得结果之后，config是一个客户端的异步操作，所以如果需要在页面加载时就调用相关接口，则须把相关接口放在ready函数中调用来确保正确执行。对于用户触发时才调用的接口，则可以直接调用，不需要放在ready函数中。
+			});
+			
+			var imgId;
+			//上传图片
+			function doUpload(localIds){
+					wx.uploadImage({
+					    localId: localIds[0], // 需要上传的图片的本地ID，由chooseImage接口获得
+					    isShowProgressTips: 1 ,// 默认为1，显示进度提示
+					    success: function (res) {
+					       imgId= res.serverId; // 返回图片的服务器端ID
+					        
+					    }
+					});
+			}
+			
+			
+			//下载图片
+			function doDownload(){
+				wx.downloadImage({
+				    serverId:imgId, // 需要下载的图片的服务器端ID，由uploadImage接口获得
+				    isShowProgressTips: 1,// 默认为1，显示进度提示
+				    success: function (res) {
+				        var localId = res.localId; // 返回图片下载后的本地ID
+				        addElementImg(localId);
+				    }
+				});
+			}
+			
+			function addElementImg(serverId) {
+		　　　　var ul = document.getElementById("imgul");
+		 
+		　　　　//添加 li
+		　　　　var li = document.createElement("li");
+		 
+		　　　　//添加 img
+		　　　　var img = document.createElement("img");
+		 
+		　　　　//设置 img 属性，如 id
+		　　　　img.setAttribute("id", "newImg");
+		 
+		　　　　//设置 img 图片地址
+		　　　　img.src = serverId;
+		 
+		　　　　li.appendChild(img);
+		　　　　ul.appendChild(li);
+　　			}
+				        
+				       
+		</script>
+
+	</head>
+	<body>
+		<ul class="mainmenu">
+          
+         	 <li>
+				<a href="#" onclick="checkPermItem()"><b><i class="glyphicon glyphicon-credit-card"></i></b><span>注册JSsdk</span></a>
+			</li>
+			
+			<li>
+				<a href="#" onclick="selectImg()" ><b><i class="glyphicon glyphicon-usd"></i></b><span>选择图片</span></a>
+			</li>
+			
+			
+			
+			<li>
+				<a href="#" onclick="doDownload()"><b><i class="glyphicon glyphicon-credit-card"></i></b><span>下载图片</span></a>
+			</li>
+			
+		</ul>
+		
+		<ul id="imgul"></ul>
+		
+		
+	</body>
+</html>

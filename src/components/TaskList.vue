@@ -18,20 +18,14 @@
         <popup-picker :data="popupPickerDatas" v-model="popupPickerValue" :show="popupPickerIsShow" @on-hide="popupPickerHide" @on-change="popupPickerChange" style="display:none;"></popup-picker>
 
         <ul class="task-list">
-            <li v-for="i in 30" class="task-list-item">
-                <p>主体工程</p>
-                <span class="task-list-percent">50%</span>
+            <li v-for="item in projectList" class="task-list-item" :class="taskStatusClass(item)"  @click="gotoTaskDetails(item.taskId)">
+                <p v-text="item.taskName" :style="'color:' + (item.taskType === '里程碑任务' ? 'red' : 'inherit')"></p>
+                <span class="task-list-percent" v-text="item.progress + '%'"></span>
                 <div>
                     <span class="time">
-                        2016/03/21 - 2016/04/21
+                        {{item.actualTimeStart}} - {{item.actualTimeEnd}}
                     </span>
                 </div>
-            </li>
-            <li>
-                bbb
-            </li>
-            <li>
-                zzz
             </li>
         </ul>
 
@@ -61,9 +55,11 @@
 
         data () {
             return {
+                projectId: '',
                 projectList: [],
 
-                taskTypeValue: ['1'],
+                // 任务分类
+                taskType: ['1'],
                 taskTypes: [[{
                     name: '主项计划',
                     value: '1'
@@ -72,7 +68,8 @@
                     value: '2'
                 }]],
 
-                progressTypeValue: ['1'],
+                // 时间进度分类
+                progressType: ['1'],
                 progressTypes: [[{
                     name: '全部',
                     value: '0'
@@ -87,7 +84,8 @@
                     value: '3'
                 }]],
 
-                evaluateTypeValue: ['1'],
+                // 评价类型分类
+                evaluateType: ['1'],
                 evaluateTypes: [[{
                     name: '评价',
                     value: '1'
@@ -99,17 +97,9 @@
                     value: '3'
                 }]],
 
-                chargerTypeValue: ['abcd'],
-                chargerTypes: [[{
-                    name: '周中庆',
-                    value: 'abcd'
-                }, {
-                    name: '周 庆',
-                    value: 'mnopq'
-                }, {
-                    name: '某某人',
-                    value: 'xyz'
-                }]],
+                // 责任人
+                chargerId: [],
+                chargerTypes: [[]],
 
                 popupPickerValue: [],
                 popupPickerDatas: [],
@@ -121,19 +111,19 @@
 
         computed: {
             taskLabel () {
-                return this.getLabel(this.taskTypeValue, this.taskTypes)
+                return this.getLabel(this.taskType, this.taskTypes)
             },
 
             progressLabel () {
-                return this.getLabel(this.progressTypeValue, this.progressTypes)
+                return this.getLabel(this.progressType, this.progressTypes)
             },
 
             evaluateLabel () {
-                return this.getLabel(this.evaluateTypeValue, this.evaluateTypes)
+                return this.getLabel(this.evaluateType, this.evaluateTypes)
             },
 
             chargerLabel () {
-                return this.getLabel(this.chargerTypeValue, this.chargerTypes)
+                return this.getLabel(this.chargerId, this.chargerTypes)
             }
         },
 
@@ -152,23 +142,24 @@
                 switch (this.popupPickerDatas) {
 
                 case this.taskTypes:
-                    this.taskTypeValue = value
+                    this.taskType = value
                     break
 
                 case this.progressTypes:
-                    this.progressTypeValue = value
+                    this.progressType = value
                     break
 
                 case this.evaluateTypes:
-                    this.evaluateTypeValue = value
+                    this.evaluateType = value
                     break
 
                 case this.chargerTypes:
-                    this.chargerTypeValue = value
+                    this.chargerId = value
                     break
                 }
 
-                this.loadList()
+                // 加载任务列表
+                this.getTaskList()
             },
 
             popupPickerHide () {
@@ -183,23 +174,81 @@
                 this.popupPickerValue = this[type + 'TypeValue'] || []
             },
 
-            loadList () {
+            loadList (loading = true) {
+                this.loading = loading
+            },
+
+            // 责任人列表
+            getChargerList () {
+                return this.$http(window.API.chargerList, {
+                    params: {
+                        projectId: this.projectId
+                    }
+                }).then(result => {
+                    console.info(result)
+                    let data = result.data.data
+                    let list = []
+                    for (let i = 0, len = data.length; i < len; i++) {
+                        let item = data[i]
+                        list.push({
+                            name: item.chargerName,
+                            value: item.chargerId
+                        })
+                        if (item.selected) {
+                            this.chargerId = [item.chargerId]
+                        }
+                    }
+
+                    this.chargerTypes = [list]
+                })
+            },
+
+            // 任务列表
+            getTaskList () {
                 this.loading = true
+
+                return this.$http(window.API.taskList, {
+                    params: {
+                        projectId: this.projectId,
+                        taskType: this.taskType[0],
+                        chargerId: this.chargerId[0],
+                        progressType: this.progressType[0],
+                        evaluateType: this.evaluateType[0]
+                    }
+                }).then(result => {
+                    let data = result.data
+                    this.projectList = data.data
+                    this.loading = false
+                })
+            },
+
+            taskStatusClass (task) {
+                return [
+                    'status-0',
+                    'status-1',
+                    'status-2',
+                    'status-3',
+                    'status-4'
+                ][task.status]
+            },
+
+            // 跳转任务详情页
+            gotoTaskDetails (taskId) {
+
             }
         },
 
-        mounted () {
-            let self = this
-            let projectId = this.$route.query.projectId
+        created () {
+            this.projectId = this.$route.query.projectId
 
-            this.$http(window.API.taskList, {
-                params: {
-                    projectId: projectId
-                }
-            }).then(result => {
-                let data = result.data
-                self.projectList = data.data
+            // Get chargerList
+            this.getChargerList().then(result => {
+                this.getTaskList()
             })
+        },
+
+        mounted () {
+
         }
     }
 </script>
@@ -305,13 +354,39 @@
         -moz-osx-font-smoothing: grayscale;
     }
 
+    .task-list-item.status-0::before {
+        content: "\e62c";
+        background-color: green;
+    }
+
+    .task-list-item.status-1::before {
+        content: "\e62c";
+        background-color: red;
+    }
+
+    .task-list-item.status-2::before {
+        content: ' ';
+        background-color: #d9c209;
+    }
+
+    .task-list-item.status-3::before {
+        content: ' ';
+        background-color: red;
+    }
+
+    .task-list-item.status-4::before {
+        content: ' ';
+        background-color: green;
+    }
+
     .task-list-item:active {
         background-color: #ECECEC;
     }
 
     .task-list-item p {
         font-size: 1.2rem;
-        padding-bottom: 5px
+        padding-bottom: 5px;
+        padding-right: 4rem;
     }
 
     .task-list-percent {

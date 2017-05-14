@@ -7,6 +7,7 @@ import Vuex from 'vuex'
 import {sync} from 'vuex-router-sync'
 import { AjaxPlugin } from 'vux'
 
+import API from './api.js'
 import App from './App'
 import ProjectList from './components/ProjectList'
 import TaskList from './components/TaskList'
@@ -15,12 +16,8 @@ Vue.use(VueRouter)
 Vue.use(Vuex)
 Vue.use(AjaxPlugin)
 
-window.API = {
-    projectList: '/static/api/projectList.json',
-    // projectList: 'http://27.154.54.186:7000/mobile/sch/projectList.action',
-
-    taskList: '/static/api/taskList.json'
-}
+// Set API to global.
+window.API = API
 
 const routes = [{
     path: '/',

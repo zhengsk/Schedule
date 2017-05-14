@@ -1,80 +1,67 @@
 {
-    "success": true,
-    "errorCode": 0,
-    "error": null,
-    "data": [
-        {
-            "projectId": 1,
-            "projectName": "11南京国贸天琴湾"
-        },{
-            "projectId": 2,
-            "projectName": "22南京国贸天琴湾"
-        },{
-            "projectId": 3,
-            "projectName": "南天琴湾"
-        },{
-            "projectId": 4,
-            "projectName": "南京国贸天琴湾"
-        },{
-            "projectId": 5,
-            "projectName": "南京琴湾"
-        },{
-            "projectId": 6,
-            "projectName": "国贸天琴湾"
-        },{
-            "projectId": 1,
-            "projectName": "南京国贸天琴湾"
-        },{
-            "projectId": 2,
-            "projectName": "南京国贸天琴湾"
-        },{
-            "projectId": 3,
-            "projectName": "南天琴湾"
-        },{
-            "projectId": 4,
-            "projectName": "南京国贸天琴湾"
-        },{
-            "projectId": 5,
-            "projectName": "南京琴湾"
-        },{
-            "projectId": 6,
-            "projectName": "国贸天琴湾"
-        },{
-            "projectId": 1,
-            "projectName": "南京国贸天琴湾"
-        },{
-            "projectId": 2,
-            "projectName": "南京国贸天琴湾"
-        },{
-            "projectId": 3,
-            "projectName": "南天琴湾"
-        },{
-            "projectId": 4,
-            "projectName": "fsdfafsa"
-        },{
-            "projectId": 5,
-            "projectName": "南京琴湾"
-        },{
-            "projectId": 6,
-            "projectName": "国贸天琴湾"
-        },{
-            "projectId": 1,
-            "projectName": "南京国贸天琴湾"
-        },{
-            "projectId": 2,
-            "projectName": "南京国贸天琴湾"
-        },{
-            "projectId": 3,
-            "projectName": "南天琴湾"
-        },{
-            "projectId": 4,
-            "projectName": "南京国贸天琴湾"
-        },{
-            "projectId": 5,
-            "projectName": "yyy南京琴湾"
-        },{
-            "projectId": 6,
-            "projectName": "zzz国贸天琴湾"
-        }
-    ]
+  "data": [
+    {
+      "actualTimeEnd": null,
+      "actualTimeStart": "17-04-25",
+      "expectTimeEnd": "17-04-25",
+      "expectTimeStart": "17-04-25",
+      "progress": 30.00,
+      "seq": 1,
+      "status": "3",
+      "taskId": "Y2nvRqXNTRuRNb7+MObCGZDM8is=",
+      "taskName": "阶段性成果",
+      "taskType": "里程碑任务"
+    },
+    {
+      "actualTimeEnd": "17-05-09",
+      "actualTimeStart": "17-04-25",
+      "expectTimeEnd": "17-04-25",
+      "expectTimeStart": "17-04-25",
+      "progress": 100.00,
+      "seq": 2,
+      "status": "2",
+      "taskId": "ZZ35CyCZSVqjPngACAOFe5DM8is=",
+      "taskName": "质量检查点",
+      "taskType": "一般任务"
+    },
+    {
+      "actualTimeEnd": null,
+      "actualTimeStart": null,
+      "expectTimeEnd": "17-04-25",
+      "expectTimeStart": "17-04-25",
+      "progress": 0.00,
+      "seq": 3,
+      "status": "3",
+      "taskId": "FPjO9azIRtWOcq2ObMK84pDM8is=",
+      "taskName": "现金流",
+      "taskType": "一般任务"
+    },
+    {
+      "actualTimeEnd": null,
+      "actualTimeStart": "17-04-25",
+      "expectTimeEnd": "17-04-25",
+      "expectTimeStart": "17-04-25",
+      "progress": 20.00,
+      "seq": 4,
+      "status": "3",
+      "taskId": "Fz3cZMlkS9S6lGrhBRjHsJDM8is=",
+      "taskName": "形象进度",
+      "taskType": "一般任务"
+    },
+    {
+      "actualTimeEnd": null,
+      "actualTimeStart": null,
+      "expectTimeEnd": "17-04-25",
+      "expectTimeStart": "17-04-25",
+      "progress": 0.00,
+      "seq": 5,
+      "status": "3",
+      "taskId": "nxN+SsB+T8+NlpMhkUt8PpDM8is=",
+      "taskName": "所有业务类型",
+      "taskType": "一般任务"
+    }
+  ],
+  "error": null,
+  "errorCode": 0,
+  "success": true
 }

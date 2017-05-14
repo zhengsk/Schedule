@@ -1,0 +1,17 @@
+{
+  "data": [
+    {
+      "chargerId": "20120323078",
+      "chargerName": "周小刚"
+    },
+    {
+      "chargerId": "##",
+      "chargerName": "全部",
+      "selected": true
+    }
+  ],
+  "error": null,
+  "errorCode": 0,
+  "projectId": "SH002",
+  "success": true
+}
