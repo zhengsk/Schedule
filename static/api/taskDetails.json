@@ -1,0 +1,352 @@
+{
+  "data": {
+    "taskId": "Y2nvRqXNTRuRNb7+MObCGZDM8is=",
+    "taskName": "阶段性成果",
+    "actualTimeEnd": null,
+    "actualTimeStart": "17-04-25",
+    "charger": "周小刚",
+    "expectTimeEnd": "17-04-25",
+    "expectTimeStart": "17-04-25",
+    "planEvaluateName": "查玉菡",
+    "progress": 30.00,
+    "qualityEvaluateName": "查玉菡",
+    "evaluateList": [],
+    "reportList": [
+      {
+        "comment": "dsdsdsd323",
+        "date": "17-05-12",
+        "endDate": null,
+        "progress": 30.00,
+        "reportId": "+dAEfK2JS1uP8NfAbihXzXX1RfM=",
+        "reportor": "查玉菡",
+        "startDate": "17-05-08"
+      },
+      {
+        "comment": "有时候，进入某个路由后，需要从服务器获取数据。例如，在渲染用户信息时，你需要从服务器获取用户的数据。我们可以通过两种方式来实现",
+        "date": "17-05-12",
+        "endDate": null,
+        "progress": 30.00,
+        "reportId": "1FMYdsLWTBi6dxgRXyW1UXX1RfM=",
+        "reportor": "查玉菡",
+        "startDate": "17-05-08"
+      },
+      {
+        "comment": "dsdsdsd",
+        "date": "17-05-09",
+        "endDate": null,
+        "progress": 20.00,
+        "reportId": "2ajfNulLQcGaWiabuAveunX1RfM=",
+        "reportor": "刘志鹏",
+        "startDate": "17-05-08"
+      },
+      {
+        "comment": "dsdsdsd",
+        "date": "17-05-09",
+        "endDate": null,
+        "progress": 20.00,
+        "reportId": "2TWGOzLKTG+yZvyIsEIUQnX1RfM=",
+        "reportor": "刘志鹏",
+        "startDate": "17-05-08"
+      },
+      {
+        "comment": "dsdsdsd",
+        "date": "17-05-09",
+        "endDate": null,
+        "progress": 20.00,
+        "reportId": "52phlO3nRIi6TK98znqhJnX1RfM=",
+        "reportor": "刘志鹏",
+        "startDate": "17-05-08"
+      },
+      {
+        "comment": "dsdsdsd323",
+        "date": "17-05-12",
+        "endDate": null,
+        "progress": 30.00,
+        "reportId": "6f3EP6YWT96f/UL0OJKzbXX1RfM=",
+        "reportor": "查玉菡",
+        "startDate": "17-05-08"
+      },
+      {
+        "comment": "dsdsdsd",
+        "date": "17-05-09",
+        "endDate": null,
+        "progress": 20.00,
+        "reportId": "9wWn88YPRDSLUa2IDiPJbnX1RfM=",
+        "reportor": "刘志鹏",
+        "startDate": "17-05-08"
+      },
+      {
+        "comment": "dsdsdsd",
+        "date": "17-05-09",
+        "endDate": null,
+        "progress": 20.00,
+        "reportId": "coLmBZEoRq214tBFQMtG4XX1RfM=",
+        "reportor": "刘志鹏",
+        "startDate": "17-05-08"
+      },
+      {
+        "comment": "dsdsdsd",
+        "date": "17-05-09",
+        "endDate": null,
+        "progress": 20.00,
+        "reportId": "Cp816vjBTfK1gY6gktRgwHX1RfM=",
+        "reportor": "刘志鹏",
+        "startDate": "17-05-08"
+      },
+      {
+        "comment": "dsdsdsd",
+        "date": "17-05-09",
+        "endDate": null,
+        "progress": 20.00,
+        "reportId": "d5LySYt5TiOEo5pVhsuOoXX1RfM=",
+        "reportor": "刘志鹏",
+        "startDate": "17-05-08"
+      },
+      {
+        "comment": "dsdsdsd",
+        "date": "17-05-09",
+        "endDate": null,
+        "progress": 20.00,
+        "reportId": "D6zKGaR4RG6eutRwsFYlvHX1RfM=",
+        "reportor": "刘志鹏",
+        "startDate": "17-05-08"
+      },
+      {
+        "comment": "dsdsdsd",
+        "date": "17-05-09",
+        "endDate": null,
+        "progress": 20.00,
+        "reportId": "d9TYqZLCSqOByKEtPhTJWnX1RfM=",
+        "reportor": "刘志鹏",
+        "startDate": "17-05-08"
+      },
+      {
+        "comment": "dsdsdsd",
+        "date": "17-05-09",
+        "endDate": null,
+        "progress": 20.00,
+        "reportId": "eoRgdXGcQ0WzXdvUFacFP3X1RfM=",
+        "reportor": "刘志鹏",
+        "startDate": "17-05-08"
+      },
+      {
+        "comment": "dsdsdsd323",
+        "date": "17-05-12",
+        "endDate": null,
+        "progress": 30.00,
+        "reportId": "ETevLwIOQRWvrIGTXZu0onX1RfM=",
+        "reportor": "查玉菡",
+        "startDate": "17-05-08"
+      },
+      {
+        "comment": "dsdsdsd323",
+        "date": "17-05-12",
+        "endDate": null,
+        "progress": 30.00,
+        "reportId": "F7xe4lSDRs+/f7/hqC/s8nX1RfM=",
+        "reportor": "查玉菡",
+        "startDate": "17-05-08"
+      },
+      {
+        "comment": "dsdsdsd",
+        "date": "17-05-09",
+        "endDate": null,
+        "progress": 20.00,
+        "reportId": "gZmE8OgqTBiYz0FooLw4xXX1RfM=",
+        "reportor": "刘志鹏",
+        "startDate": "17-05-08"
+      },
+      {
+        "comment": "dsdsdsd323",
+        "date": "17-05-12",
+        "endDate": null,
+        "progress": 30.00,
+        "reportId": "JatBFh/oRtq1WEfYy/TfBnX1RfM=",
+        "reportor": "查玉菡",
+        "startDate": "17-05-08"
+      },
+      {
+        "comment": "dsdsdsd",
+        "date": "17-05-09",
+        "endDate": null,
+        "progress": 20.00,
+        "reportId": "Jmt4rww5RKGTa6HSR2MGf3X1RfM=",
+        "reportor": "刘志鹏",
+        "startDate": "17-05-08"
+      },
+      {
+        "comment": "dsdsdsd323",
+        "date": "17-05-12",
+        "endDate": null,
+        "progress": 30.00,
+        "reportId": "KWzskCvwSbGwalXh/kvmuXX1RfM=",
+        "reportor": "查玉菡",
+        "startDate": "17-05-08"
+      },
+      {
+        "comment": "dsdsdsd",
+        "date": "17-05-09",
+        "endDate": null,
+        "progress": 20.00,
+        "reportId": "LBFKd0zjRdi3Yjb51VeRX3X1RfM=",
+        "reportor": "刘志鹏",
+        "startDate": "17-05-08"
+      },
+      {
+        "comment": "dsdsdsd323",
+        "date": "17-05-12",
+        "endDate": null,
+        "progress": 30.00,
+        "reportId": "MgZX9OdQQQ+vdbru6Y00bnX1RfM=",
+        "reportor": "查玉菡",
+        "startDate": "17-05-08"
+      },
+      {
+        "comment": "dsdsdsd",
+        "date": "17-05-09",
+        "endDate": null,
+        "progress": 20.00,
+        "reportId": "mxiVYdVkTlGGkwA82RasoHX1RfM=",
+        "reportor": "刘志鹏",
+        "startDate": "17-05-08"
+      },
+      {
+        "comment": "dsdsdsd323",
+        "date": "17-05-12",
+        "endDate": null,
+        "progress": 30.00,
+        "reportId": "NcX6dStpQ/mebiWLJFxRU3X1RfM=",
+        "reportor": "查玉菡",
+        "startDate": "17-05-08"
+      },
+      {
+        "comment": "dsdsdsd",
+        "date": "17-05-09",
+        "endDate": null,
+        "progress": 20.00,
+        "reportId": "NNWHKhrLQv6XPlMhiQxUr3X1RfM=",
+        "reportor": "刘志鹏",
+        "startDate": "17-05-08"
+      },
+      {
+        "comment": "dsdsdsd",
+        "date": "17-05-09",
+        "endDate": null,
+        "progress": 20.00,
+        "reportId": "NOC09hZhTzWRq4hUE9NtWXX1RfM=",
+        "reportor": "刘志鹏",
+        "startDate": "17-05-08"
+      },
+      {
+        "comment": "dsdsdsd",
+        "date": "17-05-09",
+        "endDate": null,
+        "progress": 20.00,
+        "reportId": "qKnyPzDVQhugB7ciVl3cCXX1RfM=",
+        "reportor": "刘志鹏",
+        "startDate": "17-05-08"
+      },
+      {
+        "comment": "1111",
+        "date": "17-05-09",
+        "endDate": null,
+        "progress": 5.00,
+        "reportId": "reJ+IrMIQjiUXXceb9Jaq3X1RfM=",
+        "startDate": "17-04-25"
+      },
+      {
+        "comment": "dsdsdsd",
+        "date": "17-05-09",
+        "endDate": null,
+        "progress": 20.00,
+        "reportId": "rk6MwDlBRG+pXt28WCK783X1RfM=",
+        "reportor": "刘志鹏",
+        "startDate": "17-05-08"
+      },
+      {
+        "comment": "dsdsdsd",
+        "date": "17-05-09",
+        "endDate": null,
+        "progress": 20.00,
+        "reportId": "s0+GQHXNR7yWm7QfiLYci3X1RfM=",
+        "reportor": "刘志鹏",
+        "startDate": "17-05-08"
+      },
+      {
+        "comment": "dsdsdsd",
+        "date": "17-05-09",
+        "endDate": null,
+        "progress": 20.00,
+        "reportId": "tBCrGAUBTsGolymyUVxV0XX1RfM=",
+        "reportor": "刘志鹏",
+        "startDate": "17-05-08"
+      },
+      {
+        "comment": "dsdsdsd",
+        "date": "17-05-09",
+        "endDate": null,
+        "progress": 20.00,
+        "reportId": "uk1UpHkHSb+6sX8dv6qTGXX1RfM=",
+        "reportor": "刘志鹏",
+        "startDate": "17-05-08"
+      },
+      {
+        "comment": "dsdsdsd",
+        "date": "17-05-09",
+        "endDate": null,
+        "progress": 20.00,
+        "reportId": "uobw7uVoS+OeV/Q5enJgTXX1RfM=",
+        "reportor": "刘志鹏",
+        "startDate": "17-05-08"
+      },
+      {
+        "comment": "dsdsdsd",
+        "date": "17-05-09",
+        "endDate": null,
+        "progress": 20.00,
+        "reportId": "UTQarwBzRgCRayzbyg7TrXX1RfM=",
+        "reportor": "刘志鹏",
+        "startDate": "17-05-08"
+      },
+      {
+        "comment": "dsdsdsd",
+        "date": "17-05-09",
+        "endDate": null,
+        "progress": 20.00,
+        "reportId": "UUVrqNCBTC+eIlaAqdpSG3X1RfM=",
+        "reportor": "刘志鹏",
+        "startDate": "17-05-08"
+      },
+      {
+        "comment": "dsdsdsd",
+        "date": "17-05-09",
+        "endDate": null,
+        "progress": 20.00,
+        "reportId": "W7rBCz8KRKmaRWeyBFmA/HX1RfM=",
+        "reportor": "刘志鹏",
+        "startDate": "17-05-08"
+      },
+      {
+        "comment": "dsdsdsd",
+        "date": "17-05-09",
+        "endDate": null,
+        "progress": 20.00,
+        "reportId": "yUixZsLuRTOfZGm6jpOk03X1RfM=",
+        "reportor": "刘志鹏",
+        "startDate": "17-05-08"
+      },
+      {
+        "comment": "dsdsdsd",
+        "date": "17-05-09",
+        "endDate": null,
+        "progress": 20.00,
+        "reportId": "ZJNJMZ75S8OdeJyNcglGGnX1RfM=",
+        "reportor": "刘志鹏",
+        "startDate": "17-05-08"
+      }
+    ]
+  },
+  "error": null,
+  "errorCode": 0,
+  "success": true
+}

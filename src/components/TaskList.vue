@@ -234,7 +234,7 @@
 
             // 跳转任务详情页
             gotoTaskDetails (taskId) {
-
+                document.location.hash = ('/taskDetails?taskId=' + taskId)
             }
         },
 

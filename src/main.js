@@ -11,6 +11,7 @@ import API from './api.js'
 import App from './App'
 import ProjectList from './components/ProjectList'
 import TaskList from './components/TaskList'
+import TaskDetails from './components/TaskDetails'
 
 Vue.use(VueRouter)
 Vue.use(Vuex)
@@ -26,6 +27,10 @@ const routes = [{
 {
     path: '/taskList',
     component: TaskList
+},
+{
+    path: '/taskDetails',
+    component: TaskDetails
 }]
 
 const router = new VueRouter({

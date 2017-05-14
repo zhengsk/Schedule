@@ -12,7 +12,12 @@ let API = {
     // chargerList: 'http://27.154.54.186:7000/mobile/sch/adminPersonList'
 
     // 任务列表
-    taskList: './static/api/taskList.json'
+    taskList: './static/api/taskList.json',
+    // http://27.154.54.186:7000/mobile/sch/taskList
+
+    // 任务详情
+    taskDetails: './static/api/taskDetails.json'
+    // http://27.154.54.186:7000/mobile/sch/taskDetails
 }
 
 window.API = API
