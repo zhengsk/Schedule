@@ -10,8 +10,8 @@
             </group>
 
             <sticky scroll-box="vux_view_box_body" :offset="46" :check-sticky-support="true">
-                <tab :line-width="3">
-                    <tab-item selected @on-item-click="changeListType('report')">汇报记录</tab-item>
+                <tab :line-width="3" v-model="showListType">
+                    <tab-item @on-item-click="changeListType('report')">汇报记录</tab-item>
                     <tab-item @on-item-click="changeListType('evaluate')">评价记录</tab-item>
                 </tab>
             </sticky>
@@ -106,7 +106,7 @@
                 reportList: [],
                 evaluateList: [],
 
-                showListType: 0,
+                showListType: null,
                 swiperHeight: '500px'
             }
         },
@@ -147,7 +147,6 @@
             'showListType' (val) {
                 let id = val === 0 ? 'reportWrapper' : 'evaluateWrapper'
                 this.swiperHeight = document.getElementById(id).offsetHeight + 'px'
-                console.info(this.swiperHeight)
                 document.getElementById(id).parentNode.parentNode.style.height = this.swiperHeight
             }
         },
@@ -155,11 +154,12 @@
         created () {
             this.taskId = this.$route.query.taskId
 
-            this.getTaskDetails()
+            this.getTaskDetails().then(result => {
+                this.showListType = 0
+            })
         },
 
         mounted () {
-
         }
     }
 </script>
