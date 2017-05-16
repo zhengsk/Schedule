@@ -5,7 +5,7 @@
             <loading v-model="isLoading"></loading>
         </div>
 
-        <view-box ref="viewBox" body-padding-top="46px" body-padding-bottom="56px">
+        <view-box ref="viewBox" :body-padding-top="bodyPaddingTop" :body-padding-bottom="bodyPaddingBottom">
             <x-header
                 class="page-title"
                 slot="header"
@@ -21,8 +21,7 @@
             </transition>
 
 
-            <tabbar class="page-tabbar" icon-class="vux-center" slot="bottom">
-
+            <tabbar class="page-tabbar" icon-class="vux-center" slot="bottom" v-if="showTabbar">
                 <tabbar-item :link="{path:'/'}" :selected="route.path === '/'">
                     <span class="tabbar-item" slot="icon" style="position:relative;top: -2px;"><i class="iconfont icon-gongchengdangan"></i></span>
                     <span slot="label">项目</span>
@@ -32,7 +31,6 @@
                     <span class="tabbar-item" slot="icon"><i class="iconfont icon-report"></i></span>
                     <span slot="label">报表</span>
                 </tabbar-item>
-
             </tabbar>
 
         </view-box>
@@ -103,6 +101,26 @@
                 if (this.route.path === '/taskList') return '任务列表'
                 if (this.route.path === '/taskDetails') return '任务详情'
                 return this.componentName ? `Demo/${this.componentName}` : 'Demo/~~'
+            },
+
+            bodyPaddingTop () {
+                return '46px'
+            },
+
+            bodyPaddingBottom () {
+                if (this.route.path === '/taskDetails') {
+                    return '0'
+                } else {
+                    return '56px'
+                }
+            },
+
+            showTabbar () {
+                if (this.route.path === '/taskDetails') {
+                    return false
+                } else {
+                    return true
+                }
             }
         },
         data () {

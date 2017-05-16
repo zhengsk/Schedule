@@ -16,7 +16,7 @@
                 </tab>
             </sticky>
 
-            <swiper v-model="showListType" :height='swiperHeight' :show-dots="false">
+            <swiper v-model="showListType" :height='swiperHeight' :show-dots="false" :min-moving-distance='50'>
                 <swiper-item>
                     <div class="tab-swiper vux-center" id="reportWrapper">
                         <ul class="report-list">
@@ -60,6 +60,17 @@
                     </div>
                 </swiper-item>
             </swiper>
+
+            <div class="button-wrapper">
+                <flexbox>
+                    <flexbox-item>
+                        <x-button type="primary">汇 报</x-button>
+                    </flexbox-item>
+                    <flexbox-item>
+                        <x-button type="primary">评 价</x-button>
+                    </flexbox-item>
+                </flexbox>
+            </div>
         </div>
 
         <div v-transfer-dom>
@@ -70,7 +81,7 @@
 
 <script>
     import { XHeader, Icon, Flexbox, FlexboxItem, PopupPicker, Sticky, Tab, TabItem, Group, Cell, Card,
-     Swiper, SwiperItem, TransferDomDirective as TransferDom, Loading } from 'vux'
+     Swiper, SwiperItem, XButton, TransferDomDirective as TransferDom, Loading } from 'vux'
 
     export default {
         components: {
@@ -85,6 +96,7 @@
             Card,
             Swiper,
             SwiperItem,
+            XButton,
             Group,
             Cell,
             Loading
@@ -174,7 +186,12 @@
 
     }
 
+    .report-list {
+        padding-bottom: 70px;
+    }
+
     .report-list li{
+        position: relative;
         font-size: 1rem;
         list-style: none;
         margin: 6px 10px;
@@ -184,6 +201,12 @@
         background-color: #F5F5F5;
 
     }
+
+    .report-list li:active{
+        background-color: #ECECEC;
+    }
+
+
 
     .report-list .report-reportor{
         float: right;
@@ -212,10 +235,39 @@
     }
 
     .report-list .report-comment{
+        position: relative;
         display: table-cell;
         box-sizing: border-box;
-        padding: 0 0 0 8px;
+        padding: 0 1rem 0 8px;
         width: 85%;
+    }
+
+    .report-list .report-comment::after {
+        content: " ";
+        display: inline-block;
+        height: 8px;
+        width: 8px;
+        border-width: 2px 2px 0 0;
+        border-color: #C8C8CD;
+        border-style: solid;
+        -webkit-transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+        transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+        position: relative;
+        top: -4px;
+        position: absolute;
+        top: 50%;
+        margin-top: -6px;
+        right: 0;
+    }
+
+    .button-wrapper {
+        box-sizing: border-box;
+        width: 100%;
+        position: fixed;
+        padding: 10px;
+        bottom: 0;
+        background-color: #FFF;
+        border-top: 1px solid #DDD
     }
 
 </style>
