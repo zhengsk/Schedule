@@ -16,8 +16,12 @@ let API = {
     // http://27.154.54.186:7000/mobile/sch/taskList
 
     // 任务详情
-    taskDetails: './static/api/taskDetails.json'
+    taskDetails: './static/api/taskDetails.json',
     // http://27.154.54.186:7000/mobile/sch/taskDetails
+
+    // 添加汇报
+    addReport: './static/api/taskDetails.json'
+    // http://27.154.54.186:7000/mobile/sch/taskProgressRpt
 }
 
 window.API = API

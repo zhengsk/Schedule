@@ -12,6 +12,7 @@ import App from './App'
 import ProjectList from './components/ProjectList'
 import TaskList from './components/TaskList'
 import TaskDetails from './components/TaskDetails'
+import AddReport from './components/AddReport'
 
 Vue.use(VueRouter)
 Vue.use(Vuex)
@@ -31,6 +32,10 @@ const routes = [{
 {
     path: '/taskDetails',
     component: TaskDetails
+},
+{
+    path: '/addReport',
+    component: AddReport
 }]
 
 const router = new VueRouter({
