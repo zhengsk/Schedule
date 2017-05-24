@@ -20,8 +20,16 @@ let API = {
     // http://27.154.54.186:7000/mobile/sch/taskDetails
 
     // 添加汇报
-    addReport: './static/api/taskDetails.json'
+    addReport: './static/api/taskDetails.json',
     // http://27.154.54.186:7000/mobile/sch/taskProgressRpt
+
+    // 评价类型下拉
+    evaluateType: './static/api/evaluateType.json',
+    // http://27.154.54.186:7000/mobile/sch/evaluateTypeList
+
+    // 评价结果下拉
+    evaluateResult: './static/api/evaluateResult.json'
+    // http://27.154.54.186:7000/mobile/sch/evaluateResultList
 }
 
 window.API = API

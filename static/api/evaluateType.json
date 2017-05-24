@@ -1,0 +1,15 @@
+{
+    "data":[
+        {
+            "evaluateId":"1SCHEDULE",
+            "projectName":"进度评价"
+        },
+        {
+            "evaluateId":"2QUALITY",
+            "projectName":"质量评价"
+        }
+    ],
+    "error":null,
+    "errorCode":0,
+    "success":true
+}

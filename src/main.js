@@ -13,6 +13,7 @@ import ProjectList from './components/ProjectList'
 import TaskList from './components/TaskList'
 import TaskDetails from './components/TaskDetails'
 import AddReport from './components/AddReport'
+import AddEvaluate from './components/AddEvaluate'
 
 Vue.use(VueRouter)
 Vue.use(Vuex)
@@ -39,7 +40,7 @@ const routes = [{
 },
 {
     path: '/addEvaluate',
-    component: AddReport
+    component: AddEvaluate
 }]
 
 const router = new VueRouter({

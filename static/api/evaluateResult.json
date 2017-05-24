@@ -1,0 +1,23 @@
+{
+    "data":[
+        {
+            "resultId":"02",
+            "resultName":"提前完成"
+        },
+        {
+            "resultId":"01",
+            "resultName":"按时完成"
+        },
+        {
+            "resultId":"04",
+            "resultName":"未完成"
+        },
+        {
+            "resultId":"03",
+            "resultName":"延迟完成"
+        }
+    ],
+    "error":null,
+    "errorCode":0,
+    "success":true
+}
