@@ -15,6 +15,8 @@ import TaskDetails from './components/TaskDetails'
 import AddReport from './components/AddReport'
 import AddEvaluate from './components/AddEvaluate'
 
+import ReportDetails from './components/ReportDetails'
+
 Vue.use(VueRouter)
 Vue.use(Vuex)
 Vue.use(AjaxPlugin)
@@ -41,6 +43,10 @@ const routes = [{
 {
     path: '/addEvaluate',
     component: AddEvaluate
+},
+{
+    path: '/ReportDetails',
+    component: ReportDetails
 }]
 
 const router = new VueRouter({

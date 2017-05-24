@@ -20,7 +20,7 @@
                 <swiper-item>
                     <div class="tab-swiper vux-center" id="reportWrapper">
                         <ul class="report-list">
-                            <li v-for='item in reportList'>
+                            <li v-for='item in reportList' @click="reportDetails(item.reportId)">
                                 <div class="report-time">
                                     <span>时间：</span><span v-text='item.date'></span>
                                     <span class="report-reportor">{{item.reportor}}</span>
@@ -143,6 +143,16 @@
                     this.reportList = data.reportList
                     this.evaluateList = data.evaluateList
                     this.loading = false
+                })
+            },
+
+            // 进入汇报详情页面
+            reportDetails (reportId) {
+                this.$router.push({
+                    path: 'reportDetails',
+                    query: {
+                        reportId: reportId
+                    }
                 })
             },
 

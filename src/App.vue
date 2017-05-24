@@ -101,6 +101,7 @@
                 if (this.route.path === '/taskList') return '任务列表'
                 if (this.route.path === '/taskDetails') return '任务详情'
                 if (this.route.path === '/addReport') return '汇报'
+                if (this.route.path === '/reportDetails') return '汇报详情'
                 if (this.route.path === '/addEvaluate') return '评价'
                 return this.componentName ? `Demo/${this.componentName}` : 'Demo/~~'
             },
