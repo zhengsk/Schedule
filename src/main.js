@@ -36,6 +36,10 @@ const routes = [{
 {
     path: '/addReport',
     component: AddReport
+},
+{
+    path: '/addEvaluate',
+    component: AddReport
 }]
 
 const router = new VueRouter({

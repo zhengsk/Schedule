@@ -37,27 +37,30 @@
                             </div>
                     </div>
                 </div>
+
+                <box gap="10px 10px"><x-button type="primary" @click.native="submit">提交</x-button></box>
             </group>
 
 
         </div>
 
         <div v-transfer-dom>
-            <loading v-model="loading" :text="'加载中...'"></loading>
+            <loading v-model="loading" :text="loadingText"></loading>
+            <toast v-model="commited" text="提交成功"></toast>
         </div>
     </div>
 </template>
 
 <script>
-    import { XHeader, Icon, Flexbox, FlexboxItem, PopupPicker, Calendar, Range, XTextarea, Group, Cell, Card,
+    import { XHeader, Icon, Toast, Box, PopupPicker, Calendar, Range, XTextarea, Group, Cell, Card,
      Swiper, SwiperItem, XButton, TransferDomDirective as TransferDom, Loading } from 'vux'
 
     export default {
         components: {
             XHeader,
             Icon,
-            Flexbox,
-            FlexboxItem,
+            Toast,
+            Box,
             PopupPicker,
             Calendar,
             Range,
@@ -79,6 +82,9 @@
         data () {
             return {
                 loading: false,
+                loadingText: '正在提交',
+
+                commited: false,
 
                 taskId: null,
                 expectTimeStart: null,
@@ -133,6 +139,19 @@
                     report: 0,
                     evaluate: 1
                 }[val]
+            },
+
+            // 提交汇报
+            submit () {
+                this.loading = true
+
+                setTimeout(() => {
+                    this.loading = false
+                    this.commited = true
+                    setTimeout(() => {
+                        this.$router.go(-1)
+                    }, 800)
+                }, 500)
             }
         },
 

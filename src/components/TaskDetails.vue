@@ -64,10 +64,10 @@
             <div class="button-wrapper">
                 <flexbox>
                     <flexbox-item>
-                        <x-button type="primary">汇 报</x-button>
+                        <x-button type="primary" @click.native="addReport">汇 报</x-button>
                     </flexbox-item>
                     <flexbox-item>
-                        <x-button type="primary">评 价</x-button>
+                        <x-button type="primary" @click.native="addEvaluate">评 价</x-button>
                     </flexbox-item>
                 </flexbox>
             </div>
@@ -152,6 +152,15 @@
                     report: 0,
                     evaluate: 1
                 }[val]
+            },
+
+            // 汇报
+            addReport () {
+                this.$router.push({path: 'addReport', query: { taskId: this.taskId }})
+            },
+
+            addEvaluate () {
+                this.$router.push({path: 'addEvaluate', query: { taskId: this.taskId }})
             }
         },
 
