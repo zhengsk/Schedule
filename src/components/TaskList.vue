@@ -188,20 +188,20 @@
                         projectId: this.projectId
                     }
                 }).then(result => {
-                    // let data = result.data.data
-                    // let list = []
-                    // for (let i = 0, len = data.length; i < len; i++) {
-                    //     let item = data[i]
-                    //     list.push({
-                    //         name: item.chargerName,
-                    //         value: item.chargerId
-                    //     })
-                    //     if (item.selected) {
-                    //         this.chargerType = [item.chargerId]
-                    //     }
-                    // }
+                    let data = result.data.data
+                    let list = []
+                    for (let i = 0, len = data.length; i < len; i++) {
+                        let item = data[i]
+                        list.push({
+                            name: item.chargerName,
+                            value: item.chargerId
+                        })
+                        if (item.selected) {
+                            this.chargerType = [item.chargerId]
+                        }
+                    }
 
-                    // this.chargerTypes = [list]
+                    this.chargerTypes = [list]
                 })
             },
 

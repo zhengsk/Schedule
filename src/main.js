@@ -97,8 +97,24 @@ FastClick.attach(document.body)
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
-new Vue({
+let vm = new Vue({
     store,
     router,
     render: h => h(App)
 }).$mount('#app-box')
+
+AjaxPlugin.$http.interceptors.request.use((req) => {
+    vm.$store.commit('updateLoadingStatus', {isLoading: true})
+    return req
+})
+
+AjaxPlugin.$http.interceptors.response.use((res) => {
+    if (res.status !== 200 || res.data.success !== true) {
+        return Promise.reject(res)
+    }
+    vm.$store.commit('updateLoadingStatus', {isLoading: false})
+    return res
+}, (error) => {
+    vm.$store.commit('updateLoadingStatus', {isLoading: false})
+    return Promise.reject(error)
+})
