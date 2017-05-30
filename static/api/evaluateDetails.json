@@ -1,0 +1,13 @@
+{
+    "data":{
+        "evalucationPerson":"查玉菡",
+        "taskName":"质量检查点",
+        "evaluateType":"进度评价",
+        "result":"按时完成",
+        "comment":"2222222",
+        "bookedDate":"17-05-12"
+    },
+    "error":null,
+    "errorCode":0,
+    "success":true
+}

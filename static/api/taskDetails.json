@@ -10,7 +10,60 @@
     "planEvaluateName": "查玉菡",
     "progress": 30.00,
     "qualityEvaluateName": "查玉菡",
-    "evaluateList": [],
+    "evaluateList": [
+      {
+        "evaluator": "周中庆",
+        "date": "2017-05-12",
+
+        "evaluateId": "评价类型ID",
+        "evaluateName": "评价类型名称",
+
+        "resultId": "评价结果ID",
+        "resultName": "评价结果名称",
+
+        "comment": "可以，评价内容，完成可以",
+        "evaluateBillId": "记录ID"
+      },
+      {
+        "evaluator": "周中庆",
+        "date": "2017-05-12",
+
+        "evaluateId": "评价类型ID",
+        "evaluateName": "评价类型名称",
+
+        "resultId": "评价结果ID",
+        "resultName": "评价结果名称",
+
+        "comment": "可以，评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容，完成可以",
+        "evaluateBillId": "记录ID"
+      },
+      {
+        "evaluator": "周中庆",
+        "date": "2017-05-12",
+
+        "evaluateId": "评价类型ID",
+        "evaluateName": "评价类型名称",
+
+        "resultId": "评价结果ID",
+        "resultName": "评价结果名称",
+
+        "comment": "可以，评价内容，完成可以",
+        "evaluateBillId": "记录ID"
+      },
+      {
+        "evaluator": "周中庆",
+        "date": "2017-05-12",
+
+        "evaluateId": "评价类型ID",
+        "evaluateName": "评价类型名称",
+
+        "resultId": "评价结果ID",
+        "resultName": "评价结果名称",
+
+        "comment": "可以，评价内容，完成可以",
+        "evaluateBillId": "记录ID"
+      }
+    ],
     "reportList": [
       {
         "comment": "dsdsdsd323",

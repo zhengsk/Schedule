@@ -55,7 +55,7 @@
 
         data () {
             return {
-                projectId: '',
+                projectId: null,
                 projectList: [],
 
                 // 任务分类
@@ -98,8 +98,11 @@
                 }]],
 
                 // 责任人
-                chargerId: [],
-                chargerTypes: [[]],
+                chargerType: ['##'],
+                chargerTypes: [[{
+                    name: '全部',
+                    value: '##'
+                }]],
 
                 popupPickerValue: [],
                 popupPickerDatas: [],
@@ -123,7 +126,7 @@
             },
 
             chargerLabel () {
-                return this.getLabel(this.chargerId, this.chargerTypes)
+                return this.getLabel(this.chargerType, this.chargerTypes)
             }
         },
 
@@ -154,7 +157,7 @@
                     break
 
                 case this.chargerTypes:
-                    this.chargerId = value
+                    this.chargerType = value
                     break
                 }
 
@@ -171,7 +174,7 @@
             showPopupPicker (type) {
                 this.popupPickerIsShow = true
                 this.popupPickerDatas = this[type + 'Types'] || []
-                this.popupPickerValue = this[type + 'TypeValue'] || []
+                this.popupPickerValue = this[type + 'Type'] || []
             },
 
             loadList (loading = true) {
@@ -185,21 +188,20 @@
                         projectId: this.projectId
                     }
                 }).then(result => {
-                    console.info(result)
-                    let data = result.data.data
-                    let list = []
-                    for (let i = 0, len = data.length; i < len; i++) {
-                        let item = data[i]
-                        list.push({
-                            name: item.chargerName,
-                            value: item.chargerId
-                        })
-                        if (item.selected) {
-                            this.chargerId = [item.chargerId]
-                        }
-                    }
+                    // let data = result.data.data
+                    // let list = []
+                    // for (let i = 0, len = data.length; i < len; i++) {
+                    //     let item = data[i]
+                    //     list.push({
+                    //         name: item.chargerName,
+                    //         value: item.chargerId
+                    //     })
+                    //     if (item.selected) {
+                    //         this.chargerType = [item.chargerId]
+                    //     }
+                    // }
 
-                    this.chargerTypes = [list]
+                    // this.chargerTypes = [list]
                 })
             },
 
@@ -211,7 +213,7 @@
                     params: {
                         projectId: this.projectId,
                         taskType: this.taskType[0],
-                        chargerId: this.chargerId[0],
+                        chargerId: this.chargerType[0],
                         progressType: this.progressType[0],
                         evaluateType: this.evaluateType[0]
                     }

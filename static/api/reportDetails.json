@@ -1,0 +1,20 @@
+{
+    "data":{
+        "reportDate":"2017-05-09",
+        "actualTimeStart":"2017-05-08",
+        "actualTimeEnd":"2017-05-18",
+        "reportId":"2ajfNulLQcGaWiabuAveunX1RfM=",
+        "reportor":"刘志鹏",
+        "comment":"dsdsdsd",
+        "progress":20,
+        "medias":[
+            {
+                "media_id":"1UiYYLh1ceg3Dfr4P1ZV2LJycj9Q9LnWjpbJqj-D6tWBk9uRK9PfZnKM1CjlK_uaIKsEqnVL2eRTseB90sNrGhw",
+                "media_Name":"111111111"
+            }
+        ]
+    },
+    "error":null,
+    "errorCode":0,
+    "success":true
+}

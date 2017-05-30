@@ -1,5 +1,5 @@
 <template>
-    <div class="task-details">
+    <div class="task-details add-evaluate">
         <div class="task-details-summary">
             <h1>主体工程</h1>
 
@@ -194,13 +194,20 @@
             submit () {
                 this.loading = true
 
-                setTimeout(() => {
-                    this.loading = false
-                    this.commited = true
-                    setTimeout(() => {
+                return this.$http(window.API.addEvaluate, {
+                    params: {
+                        taskId: this.taskId,
+                        evaluateId: this.evaluateId[0],
+                        resultId: this.evaluateResult[0],
+                        comment: this.comment
+                    }
+                }).then(result => {
+                    if (result.data.success) {
+                        this.loading = false
+                        this.commited = true
                         this.$router.go(-1)
-                    }, 800)
-                }, 500)
+                    }
+                })
             }
         },
 
@@ -224,7 +231,7 @@
 </script>
 
 <style lang="less">
-    .report-list {
+    .add-evaluate .report-list {
         padding-bottom: 0;
     }
 </style>

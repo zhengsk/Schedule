@@ -2,14 +2,29 @@
     <div class="task-details">
         <div class="task-details-summary">
             <h1>主体工程</h1>
-
+            <!--
+                "reportDate":"17-05-09",
+                "actualTimeStart":"17-05-08",
+                "actualTimeEnd":"17-05-18",
+                "reportId":"2ajfNulLQcGaWiabuAveunX1RfM=",
+                "reportor":"刘志鹏",
+                "comment":"dsdsdsd",
+                "progress":20,
+                "medias":[
+                   {
+                       "media_id":"1UiYYLh1ceg3Dfr4P1ZV2LJycj9Q9LnWjpbJqj-D6tWBk9uRK9PfZnKM1CjlK_uaIKsEqnVL2eRTseB90sNrGhw",
+                       "media_Name":"111111111"
+                   }
+                ]
+             -->
             <group>
-                <cell title="责任人：" :value="charger"></cell>
-                <cell title="评价人：" :value="planEvaluateName"></cell>
-                <cell title="开始时间" :value="actualTimeStart"></cell>
-                <cell title="结束时间" :value="actualTimeEnd"></cell>
+                <cell title="汇报人：" :value="reportor"></cell>
+                <cell title="汇报时间：" :value="reportDate"></cell>
 
-                <cell :title="'进度：' + progress" primary="content">
+                <cell title="开始时间：" :value="actualTimeStart"></cell>
+                <cell title="结束时间：" :value="actualTimeEnd"></cell>
+
+                <cell :title="'进度：' + progress + '%'" primary="content">
                     <range v-model="progress" :disabled='true' :min="0" :max="100" :range-bar-height="5"></range>
                 </cell>
                 <x-textarea title="汇报描述：" v-model="comment" :readonly='true' placeholder="汇报内容"></x-textarea>
@@ -17,7 +32,6 @@
                 <div class="weui-uploader" style="padding:15px;">
                       <div class="weui-uploader__hd">
                           <p class="weui-uploader__title">图片上传</p>
-                          <div class="weui-uploader__info">0/2</div>
                       </div>
                       <div class="weui-uploader__bd">
                             <ul class="weui-uploader__files" id="uploaderFiles">
@@ -69,13 +83,10 @@
         data () {
             return {
                 loading: false,
-                loadingText: '正在提交',
-
-                commited: false,
 
                 taskId: null,
-                expectTimeStart: null,
-                expectTimeEnd: null,
+                reportor: null,
+                reportDate: null,
 
                 actualTimeStart: null,
                 actualTimeEnd: null,
@@ -84,23 +95,19 @@
                 comment: '按时完成了，很好。',
 
                 charger: null,
-                planEvaluateName: null,
-                reportList: [],
-                evaluateList: [],
 
-                showListType: null,
-                swiperHeight: '500px',
-
-                medias: [{
-                    src: 'https://ooo.0o0.ooo/2017/05/17/591c271ab71b1.jpg',
-                    w: 800,
-                    h: 400
-                },
-                {
-                    src: 'https://ooo.0o0.ooo/2017/05/17/591c271acea7c.jpg',
-                    w: 1200,
-                    h: 900
-                }],
+                medias: [
+                    {
+                        src: 'https://ooo.0o0.ooo/2017/05/17/591c271ab71b1.jpg',
+                        w: 800,
+                        h: 400
+                    },
+                    {
+                        src: 'https://ooo.0o0.ooo/2017/05/17/591c271acea7c.jpg',
+                        w: 1200,
+                        h: 900
+                    }
+                ],
                 options: {
                     getThumbBoundsFn (index) {
                         // find thumbnail element
@@ -126,32 +133,22 @@
             getTaskDetails () {
                 this.loading = true
 
-                return this.$http(window.API.taskDetails, {
+                return this.$http(window.API.reportDetails, {
                     params: {
                         taskId: this.taskId
                     }
                 }).then(result => {
                     let data = result.data.data
-                    this.expectTimeStart = data.expectTimeStart
-                    this.expectTimeEnd = data.expectTimeEnd
-                    this.charger = data.charger
-                    this.planEvaluateName = data.planEvaluateName
-                    this.reportList = data.reportList
-                    this.evaluateList = data.evaluateList
                     this.loading = false
-                    this.progress = data.progress
 
+                    this.reportor = data.reportor
+                    this.progress = data.progress
+                    this.reportDate = data.reportDate
                     this.actualTimeStart = data.actualTimeStart
                     this.actualTimeEnd = data.actualTimeEnd
+                    this.comment = data.comment
+                    // this.medias = data.medias //@TODO
                 })
-            },
-
-            // 切换记录：汇报记录、评价记录
-            changeListType (val) {
-                this.showListType = {
-                    report: 0,
-                    evaluate: 1
-                }[val]
             },
 
             // 预览图片

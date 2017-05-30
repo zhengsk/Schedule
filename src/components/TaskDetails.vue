@@ -41,19 +41,18 @@
                 <swiper-item>
                     <div class="tab-swiper vux-center" id="evaluateWrapper">
                         <ul class="report-list">
-                            <li v-for='item in reportList'>
+                            <li v-for='item in evaluateList'  @click="evaluateDetails(item.evaluateBillId)">
                                 <div class="report-time">
                                     <span>时间：</span><span v-text='item.date'></span>
-                                    <span class="report-reportor">{{item.reportor}}</span>
+                                    <span class="report-reportor">{{item.evaluator}}</span>
                                 </div>
-                                <div class="report-info">
-                                    <span class="report-progress">
-                                        进度<br/>
-                                        <span>{{item.progress}}%</span>
-                                    </span>
-                                    <span class="report-comment">
-                                        {{item.comment}}
-                                    </span>
+                                <div class="report-info evaluate-info">
+                                    <div>
+                                        <span>{{item.evaluateName}}：</span>{{item.resultName}}
+                                    </div>
+                                    <div class="evaluate-comment">
+                                        <span>评价内容：</span>{{item.comment}}
+                                    </div>
                                 </div>
                             </li>
                         </ul>
@@ -152,6 +151,16 @@
                     path: 'reportDetails',
                     query: {
                         reportId: reportId
+                    }
+                })
+            },
+
+            // 进入评价详情页面
+            evaluateDetails (evaluateBillId) {
+                this.$router.push({
+                    path: 'evaluateDetails',
+                    query: {
+                        evaluateBillId: evaluateBillId
                     }
                 })
             },
@@ -262,6 +271,38 @@
     }
 
     .report-list .report-comment::after {
+        content: " ";
+        display: inline-block;
+        height: 8px;
+        width: 8px;
+        border-width: 2px 2px 0 0;
+        border-color: #C8C8CD;
+        border-style: solid;
+        -webkit-transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+        transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+        position: relative;
+        top: -4px;
+        position: absolute;
+        top: 50%;
+        margin-top: -6px;
+        right: 0;
+    }
+
+    .evaluate-info {
+        position: relative;
+        padding-right: 10px;
+        box-sizing: border-box;
+    }
+
+    .evaluate-comment {
+        padding-top: 8px;
+    }
+
+    .evaluate-info span{
+        color: #555;
+    }
+
+    .evaluate-info::after {
         content: " ";
         display: inline-block;
         height: 8px;
