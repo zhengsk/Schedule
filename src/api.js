@@ -4,6 +4,9 @@ let API = {
     login: './static/api/login.json',
     // login: 'http://27.154.54.186:7000/mobile/wdwf2/login.action?userName=liuzp&password=&appClientId=10002',
 
+    // 获取微信签名数据
+    WXSign: '../sch/getJsSdkSign.action',
+
     // 1.项目列表
     projectList: './static/api/projectList.json',
     // projectList: './projectList.action',
@@ -50,6 +53,9 @@ let API = {
     // 0.登录接口
     // login: './static/api/login.json',
     login: 'http://27.154.54.186:7000/mobile/wdwf2/login.action?userName=liuzp&password=&appClientId=10002',
+
+    // 获取微信签名数据
+    WXSign: '../sch/getJsSdkSign.action',
 
     // 1.项目列表
     // projectList: './static/api/projectList.json',

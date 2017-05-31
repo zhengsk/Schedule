@@ -22,7 +22,7 @@
 
 
             <tabbar class="page-tabbar" icon-class="vux-center" slot="bottom" v-if="showTabbar">
-                <tabbar-item :link="{path:'/'}" :selected="route.path === '/'">
+                <tabbar-item :link="{path:'/'}" :selected="route.path !== '/statistics'">
                     <span class="tabbar-item" slot="icon" style="position:relative;top: -2px;"><i class="iconfont icon-gongchengdangan"></i></span>
                     <span slot="label">项目</span>
                 </tabbar-item>

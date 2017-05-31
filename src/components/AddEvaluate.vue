@@ -12,7 +12,7 @@
 
             <div class="tab-swiper vux-center" id="reportWrapper">
                 <ul class="report-list">
-                    <li v-for='item in reportList'>
+                    <li v-for='item in reportList'  @click="reportDetails(item.reportId)">
                         <div class="report-time">
                             <span>时间：</span><span v-text='item.date'></span>
                             <span class="report-reportor">{{item.reportor}}</span>
@@ -124,7 +124,13 @@
 
         computed: {
             evaluateResultLabel () {
-                return ''
+                var rest = null
+                this.evaluateTypeData[0] && this.evaluateTypeData[0].forEach(item => {
+                    if (this.evaluateId[0] === item.value) {
+                        rest = item.name
+                    }
+                })
+                return rest
             }
         },
 
@@ -198,6 +204,16 @@
                     report: 0,
                     evaluate: 1
                 }[val]
+            },
+
+            // 进入汇报详情页面
+            reportDetails (reportId) {
+                this.$router.push({
+                    path: 'reportDetails',
+                    query: {
+                        reportId: reportId
+                    }
+                })
             },
 
             // 提交汇报

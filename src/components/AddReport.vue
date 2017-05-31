@@ -40,8 +40,8 @@
                                   <div class="weui-uploader__file-content">50%</div>
                                 </li> -->
                             </ul>
-                            <div class="weui-uploader__input-box">
-                                <input id="uploaderInput" class="weui-uploader__input" type="file" accept="image/*" multiple />
+                            <div class="weui-uploader__input-box" @click.native='chooseImage'>
+                                <input id="uploaderInput" class="weui-uploader__input" type="button" />
                             </div>
                     </div>
                 </div>
@@ -190,6 +190,21 @@
                         this.$router.go(-1)
                     }
                 })
+            },
+
+            chooseImage () {
+                debugger
+                window.wx.chooseImage({
+                    count: 1, // 默认9
+                    sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+                    sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+                    success: function (res) {
+                        console.info(res)
+                        // var localIds = res.localIds // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
+                        // addElementImg(localIds[0])
+                        // doUpload(localIds)
+                    }
+                })
             }
         },
 
@@ -206,6 +221,31 @@
         },
 
         mounted () {
+            return this.$http(window.API.WXSign, {
+                params: {
+                    url: this.taskId
+                }
+            }).then(result => {
+                let data = result.data.data
+
+                alert(data)
+                debugger
+                console.info(data)
+
+                window.wx.config({
+                    debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+                    appId: data.data.appId, // 必填，企业号的唯一标识，此处填写企业号corpid
+                    timestamp: data.data.timestamp, // 必填，生成签名的时间戳
+                    nonceStr: data.data.nonceStr, // 必填，生成签名的随机串
+                    signature: data.data.signature, // 必填，签名，见附录1
+                    jsApiList: [
+                        'chooseImage',
+                        'previewImage',
+                        'uploadImage',
+                        'downloadImage'
+                    ] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+                })
+            })
         }
     }
 </script>
