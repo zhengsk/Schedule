@@ -28,10 +28,13 @@
                       </div>
                       <div class="weui-uploader__bd">
                             <ul class="weui-uploader__files" id="uploaderFiles">
-                                <!-- <li class="weui-uploader__file" style="background-image:url(https://static.vux.li/uploader_bg.png)"></li>
-                                <li class="weui-uploader__file" style="background-image:url(https://static.vux.li/uploader_bg.png)"></li>
-                                <li class="weui-uploader__file" style="background-image:url(https://static.vux.li/uploader_bg.png)"></li>
-                                <li class="weui-uploader__file weui-uploader__file_status" style="background-image:url(https://static.vux.li/uploader_bg.png)">
+                                <li v-for="src in media_srcs"
+                                    class="weui-uploader__file"
+                                >
+                                    <img class="uploader__image" :src="src">
+                                </li>
+
+                                <!-- <li class="weui-uploader__file weui-uploader__file_status" style="background-image:url(https://static.vux.li/uploader_bg.png)">
                                   <div class="weui-uploader__file-content">
                                       <i class="weui-icon-warn"></i>
                                   </div>
@@ -39,6 +42,7 @@
                                 <li class="weui-uploader__file weui-uploader__file_status" style="background-image:url(https://static.vux.li/uploader_bg.png)">
                                   <div class="weui-uploader__file-content">50%</div>
                                 </li> -->
+
                             </ul>
                             <div class="weui-uploader__input-box" @click='chooseImage'>
                                 <input id="uploaderInput" class="weui-uploader__input" type="button" />
@@ -112,6 +116,7 @@
                 showListType: null,
                 swiperHeight: '500px',
 
+                media_srcs: [],
                 media_ids: [],
                 media_Names: []
             }
@@ -193,16 +198,34 @@
             },
 
             chooseImage () {
+                let self = this
                 window.wx.chooseImage({
                     count: 9, // 默认9
                     sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
                     sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
                     success: function (res) {
                         console.info(res)
-                        // var localIds = res.localIds // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
+                        var localIds = res.localIds // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
                         // addElementImg(localIds[0])
-                        // doUpload(localIds)
+                        self.upImage(localIds)
                     }
+                })
+            },
+
+            upImage (localIds) {
+                var self = this
+
+                localIds.forEach((localId, index) => {
+                    self.media_srcs.push(localId)
+
+                    window.wx.uploadImage({
+                        localId: localId, // 需要上传的图片的本地ID，由chooseImage接口获得
+                        isShowProgressTips: 1, // 默认为1，显示进度提示
+                        success: function (res) {
+                            self.media_ids.push(res.serverId) // 返回图片的服务器端ID
+                            self.media_Names.push(new Date().getTime() + index) // 返回图片的服务器端ID
+                        }
+                    })
                 })
             }
         },
@@ -275,4 +298,21 @@
 
 <style lang="less">
     @import '~vux/src/styles/weui/widget/weui-uploader/index.less';
+
+    .weui-uploader__file {
+        position: relative;
+        border: 1px solid #D9D9D9;
+        background-color: #ebebeb;
+        padding: 2px;
+        box-sizing: border-box;
+
+        .uploader__image {
+            max-width: 73px;
+            max-height: 73px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%)
+        }
+    }
 </style>
