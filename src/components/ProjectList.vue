@@ -1,7 +1,7 @@
 <template>
     <div>
         <group class="project-list">
-            <cell v-for="item in projectList" :key="item.projectId" :title="item.projectName" :link="'/taskList?projectId=' + item.projectId"></cell>
+            <cell v-for="item in projectList" :key="item.projectId" :title="item.projectName" :link="'/taskList?projectId=' + encodeURIComponent(item.projectId)"></cell>
         </group>
     </div>
 

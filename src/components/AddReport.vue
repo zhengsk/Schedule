@@ -7,8 +7,17 @@
                 <cell title="责任人：" :value="charger"></cell>
                 <cell title="评价人：" :value="planEvaluateName"></cell>
                 <calendar v-model="actualTimeStart" :title="'开始时间'"></calendar>
-                <calendar v-model="actualTimeEnd" :title="'结束时间'" :start-date="actualTimeStart"></calendar>
-                <cell :title="'进度：' + progress" primary="content">
+
+                <template v-if='!timeEndAble'>
+                    <cell title="结束时间" :value="actualTimeEnd"></cell>
+                </template>
+
+                <template v-if='timeEndAble'>
+                    <calendar v-model="actualTimeEnd" :title="'结束时间'" :start-date="actualTimeStart"></calendar>
+                </template>
+
+
+                <cell :title="'进度：' + progress +'%'" primary="content">
                     <range v-model="progress" :min="0" :max="100" :range-bar-height="5"></range>
                 </cell>
                 <x-textarea title="汇报描述：" v-model="comment" placeholder="汇报内容"></x-textarea>
@@ -16,11 +25,10 @@
                 <div class="weui-uploader" style="padding:15px;">
                       <div class="weui-uploader__hd">
                           <p class="weui-uploader__title">图片上传</p>
-                          <div class="weui-uploader__info">0/2</div>
                       </div>
                       <div class="weui-uploader__bd">
                             <ul class="weui-uploader__files" id="uploaderFiles">
-                                <li class="weui-uploader__file" style="background-image:url(https://static.vux.li/uploader_bg.png)"></li>
+                                <!-- <li class="weui-uploader__file" style="background-image:url(https://static.vux.li/uploader_bg.png)"></li>
                                 <li class="weui-uploader__file" style="background-image:url(https://static.vux.li/uploader_bg.png)"></li>
                                 <li class="weui-uploader__file" style="background-image:url(https://static.vux.li/uploader_bg.png)"></li>
                                 <li class="weui-uploader__file weui-uploader__file_status" style="background-image:url(https://static.vux.li/uploader_bg.png)">
@@ -30,7 +38,7 @@
                                 </li>
                                 <li class="weui-uploader__file weui-uploader__file_status" style="background-image:url(https://static.vux.li/uploader_bg.png)">
                                   <div class="weui-uploader__file-content">50%</div>
-                                </li>
+                                </li> -->
                             </ul>
                             <div class="weui-uploader__input-box">
                                 <input id="uploaderInput" class="weui-uploader__input" type="file" accept="image/*" multiple />
@@ -102,11 +110,33 @@
                 evaluateList: [],
 
                 showListType: null,
-                swiperHeight: '500px'
+                swiperHeight: '500px',
+
+                media_ids: [],
+                media_Names: []
             }
         },
 
         computed: {
+            timeEndAble () {
+                if (this.preTimeEnd === undefined) {
+                    this.preTimeEnd = this.progress
+                }
+
+                if (this.progress === 100) {
+                    var date = new Date()
+                    var datas = [
+                        date.getFullYear(),
+                        ('0' + (date.getMonth() + 1)).substr(-2),
+                        ('0' + date.getDate()).substr(-2)
+                    ]
+                    this.actualTimeEnd = datas.join('-')
+                    return true
+                } else {
+                    this.actualTimeEnd = null
+                    return false
+                }
+            }
         },
 
         methods: {
@@ -143,15 +173,23 @@
 
             // 提交汇报
             submit () {
-                this.loading = true
-
-                setTimeout(() => {
-                    this.loading = false
-                    this.commited = true
-                    setTimeout(() => {
+                return this.$http(window.API.addReport, {
+                    params: {
+                        taskId: this.taskId,
+                        progress: this.progress,
+                        actualTimeStart: this.actualTimeStart,
+                        actualTimeEnd: this.actualTimeEnd,
+                        comment: this.comment,
+                        media_ids: this.media_ids,
+                        media_Names: this.media_Names
+                    }
+                }).then(result => {
+                    if (result.data.success) {
+                        this.loading = false
+                        this.commited = true
                         this.$router.go(-1)
-                    }, 800)
-                }, 500)
+                    }
+                })
             }
         },
 

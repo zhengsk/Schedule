@@ -39,10 +39,17 @@
                     @on-change="getEvaluateResult"
                 ></popup-picker>
 
-                <popup-picker title="进度评价" :data="evaluateResultData" :show-name="true" v-model="evaluateResult" placeholder="请选择"></popup-picker>
-    </group>
-                <x-textarea title="评价说明：" v-model="comment" placeholder="评价内容"></x-textarea>
+                <popup-picker
+                    :title="evaluateResultLabel"
+                    :data="evaluateResultData"
+                    :show-name="true"
+                    v-model="evaluateResult"
+                    placeholder="请选择"
+                ></popup-picker>
+
             </group>
+
+            <x-textarea title="评价说明：" v-model="comment" placeholder="评价内容"></x-textarea>
             <box gap="10px 10px"><x-button type="primary" @click.native="submit">提交</x-button></box>
 
         </div>
@@ -116,6 +123,9 @@
         },
 
         computed: {
+            evaluateResultLabel () {
+                return ''
+            }
         },
 
         methods: {

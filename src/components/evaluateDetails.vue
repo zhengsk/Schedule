@@ -91,11 +91,6 @@
                     this.comment = data.comment
                     this.bookedDate = data.bookedDate
                 })
-            },
-
-            // 预览图片
-            preview (index) {
-                this.$refs.previewer.show(index)
             }
         },
 

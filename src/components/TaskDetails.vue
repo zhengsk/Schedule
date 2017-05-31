@@ -72,15 +72,12 @@
             </div>
         </div>
 
-        <div v-transfer-dom>
-            <loading v-model="loading" :text="'加载中...'"></loading>
-        </div>
     </div>
 </template>
 
 <script>
     import { XHeader, Icon, Flexbox, FlexboxItem, PopupPicker, Sticky, Tab, TabItem, Group, Cell, Card,
-     Swiper, SwiperItem, XButton, TransferDomDirective as TransferDom, Loading } from 'vux'
+     Swiper, SwiperItem, XButton, TransferDomDirective as TransferDom } from 'vux'
 
     export default {
         components: {
@@ -97,8 +94,7 @@
             SwiperItem,
             XButton,
             Group,
-            Cell,
-            Loading
+            Cell
         },
 
         directives: {
@@ -107,8 +103,6 @@
 
         data () {
             return {
-                loading: false,
-
                 taskId: null,
                 expectTimeStart: null,
                 expectTimeEnd: null,
@@ -127,8 +121,6 @@
 
         methods: {
             getTaskDetails () {
-                this.loading = true
-
                 return this.$http(window.API.taskDetails, {
                     params: {
                         taskId: this.taskId
@@ -141,7 +133,6 @@
                     this.planEvaluateName = data.planEvaluateName
                     this.reportList = data.reportList
                     this.evaluateList = data.evaluateList
-                    this.loading = false
                 })
             },
 

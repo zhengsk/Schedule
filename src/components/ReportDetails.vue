@@ -84,7 +84,7 @@
             return {
                 loading: false,
 
-                taskId: null,
+                reportId: null,
                 reportor: null,
                 reportDate: null,
 
@@ -127,6 +127,7 @@
         },
 
         computed: {
+
         },
 
         methods: {
@@ -135,7 +136,7 @@
 
                 return this.$http(window.API.reportDetails, {
                     params: {
-                        taskId: this.taskId
+                        reportId: this.reportId
                     }
                 }).then(result => {
                     let data = result.data.data
@@ -162,7 +163,7 @@
         },
 
         created () {
-            this.taskId = this.$route.query.taskId
+            this.reportId = this.$route.query.reportId
 
             this.getTaskDetails().then(result => {
                 this.showListType = 0

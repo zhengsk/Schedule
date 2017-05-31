@@ -27,7 +27,7 @@
                     <span slot="label">项目</span>
                 </tabbar-item>
 
-                <tabbar-item :link="{path:'/project/donate'}" :selected="route.path === '/report'">
+                <tabbar-item :link="{path:'/statistics'}" :selected="route.path === '/statistics'">
                     <span class="tabbar-item" slot="icon"><i class="iconfont icon-report"></i></span>
                     <span slot="label">报表</span>
                 </tabbar-item>
@@ -82,7 +82,7 @@
 
             leftOptions () {
                 return {
-                    showBack: this.route.path !== '/'
+                    showBack: false
                 }
             },
 
@@ -108,7 +108,7 @@
                 if (this.route.path === '/addEvaluate') return '评价'
                 if (this.route.path === '/evaluateDetails') return '评价详情'
 
-                return this.componentName ? `Demo/${this.componentName}` : 'Demo/~~'
+                return this.componentName ? `Demo/${this.componentName}` : '报表'
             },
 
             bodyPaddingTop () {
@@ -166,7 +166,11 @@
         left:0;
         top:0;
         z-index:100;
-        background-color: #FFF;
+        background-color: #EEE;
+    }
+
+    .weui-tabbar.page-tabbar {
+        background-color: #EEE;
     }
 
     .vux-header.page-title .vux-header-title, .vux-header h1 {

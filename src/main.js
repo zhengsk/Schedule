@@ -19,6 +19,8 @@ import EvaluateDetails from './components/EvaluateDetails'
 
 import ReportDetails from './components/ReportDetails'
 
+import Statistics from './components/Statistics'
+
 Vue.use(VueRouter)
 Vue.use(Vuex)
 Vue.use(AjaxPlugin)
@@ -53,6 +55,10 @@ const routes = [{
 {
     path: '/evaluateDetails',
     component: EvaluateDetails
+},
+{
+    path: '/statistics',
+    component: Statistics
 }]
 
 const router = new VueRouter({
@@ -110,6 +116,7 @@ AjaxPlugin.$http.interceptors.request.use((req) => {
 
 AjaxPlugin.$http.interceptors.response.use((res) => {
     if (res.status !== 200 || res.data.success !== true) {
+        alert(res.data.error)
         return Promise.reject(res)
     }
     vm.$store.commit('updateLoadingStatus', {isLoading: false})
