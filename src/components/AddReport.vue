@@ -213,19 +213,23 @@
             upImage (localIds) {
                 var self = this
 
-                localIds.forEach((localId, index) => {
+                let uploadImage = function (localIds) {
+                    var localId = localIds.shift()
                     self.media_srcs.push(localId)
 
                     window.wx.uploadImage({
                         localId: localId, // 需要上传的图片的本地ID，由chooseImage接口获得
                         isShowProgressTips: 1, // 默认为1，显示进度提示
                         success: function (res) {
-                            alert('serverId:', res, res.serverId)
                             self.media_ids.push(res.serverId) // 返回图片的服务器端ID
-                            self.media_Names.push(new Date().getTime() + index) // 返回图片的服务器端ID
+                            self.media_Names.push(new Date().getTime()) // 返回图片的服务器端ID
+                            if (localIds.length) {
+                                uploadImage(localIds)
+                            }
                         }
                     })
-                })
+                }
+                uploadImage(localIds)
             }
         },
 
