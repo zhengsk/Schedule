@@ -6,7 +6,14 @@
             <group>
                 <cell title="责任人：" :value="charger"></cell>
                 <cell title="评价人：" :value="planEvaluateName"></cell>
-                <calendar v-model="actualTimeStart" :title="'开始时间'"></calendar>
+
+                <template v-if='!timeStartAble'>
+                    <cell title="开始时间" :value="actualTimeStart"></cell>
+                </template>
+
+                <template v-if='timeStartAble'>
+                    <calendar v-model="actualTimeStart" :title="'开始时间'"></calendar>
+                </template>
 
                 <template v-if='!timeEndAble'>
                     <cell title="结束时间" :value="actualTimeEnd"></cell>
@@ -33,15 +40,6 @@
                                 >
                                     <img class="uploader__image" :src="src">
                                 </li>
-
-                                <!-- <li class="weui-uploader__file weui-uploader__file_status" style="background-image:url(https://static.vux.li/uploader_bg.png)">
-                                  <div class="weui-uploader__file-content">
-                                      <i class="weui-icon-warn"></i>
-                                  </div>
-                                </li>
-                                <li class="weui-uploader__file weui-uploader__file_status" style="background-image:url(https://static.vux.li/uploader_bg.png)">
-                                  <div class="weui-uploader__file-content">50%</div>
-                                </li> -->
 
                             </ul>
                             <div class="weui-uploader__input-box" @click='chooseImage'>
@@ -123,6 +121,14 @@
         },
 
         computed: {
+            timeStartAble () {
+                if (this.actualTimeStart) {
+                    return true
+                } else {
+                    return false
+                }
+            },
+
             timeEndAble () {
                 if (this.preTimeEnd === undefined) {
                     this.preTimeEnd = this.progress

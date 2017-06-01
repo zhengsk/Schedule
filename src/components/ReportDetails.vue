@@ -35,13 +35,18 @@
                       </div>
                       <div class="weui-uploader__bd">
                             <ul class="weui-uploader__files" id="uploaderFiles">
-                                <li v-for="(item, index) in medias" class="weui-uploader__file previewer-img" :style="'background-image:url(' + item.src + ')'" @click="preview(index)"></li>
+                                <li v-for="(src, index) in imageSrcs"
+                                    class="weui-uploader__file previewer-img"
+                                    @click='preview(index)'
+                                >
+                                    <img class="uploader__image" :src="src">
+                                </li>
                             </ul>
                     </div>
                 </div>
 
                 <div v-transfer-dom>
-                    <previewer :list="medias" ref="previewer" :options="options"></previewer>
+                    <previewer :list="previewImages" ref="previewer" :options="options"></previewer>
                 </div>
 
             </group>
@@ -95,19 +100,9 @@
                 comment: '按时完成了，很好。',
 
                 charger: null,
+                medias: [],
+                imageSrcs: [],
 
-                medias: [
-                    {
-                        src: 'https://ooo.0o0.ooo/2017/05/17/591c271ab71b1.jpg',
-                        w: 800,
-                        h: 400
-                    },
-                    {
-                        src: 'https://ooo.0o0.ooo/2017/05/17/591c271acea7c.jpg',
-                        w: 1200,
-                        h: 900
-                    }
-                ],
                 options: {
                     getThumbBoundsFn (index) {
                         // find thumbnail element
@@ -127,7 +122,17 @@
         },
 
         computed: {
-
+            previewImages () {
+                var images = []
+                this.imageSrcs.forEach(src => {
+                    images.push({
+                        src: src,
+                        w: 900,
+                        h: 1600
+                    })
+                })
+                return images
+            }
         },
 
         methods: {
@@ -148,13 +153,48 @@
                     this.actualTimeStart = data.actualTimeStart
                     this.actualTimeEnd = data.actualTimeEnd
                     this.comment = data.comment
-                    // this.medias = data.medias //@TODO
+                    this.medias = data.medias
+
+                    this.showImages()
                 })
             },
 
             // 预览图片
             preview (index) {
                 this.$refs.previewer.show(index)
+            },
+
+            showImages () {
+                var serverIds = []
+                this.medias.forEach(media => {
+                    serverIds.push(media.media_id)
+                })
+
+                this.downloadImage(serverIds)
+            },
+
+            downloadImage (serverIds) {
+                var self = this
+                getImage(serverIds)
+
+                function getImage (serverIds) {
+                    if (!serverIds.length) {
+                        return false
+                    }
+
+                    var serverId = serverIds.shift()
+                    window.wx.downloadImage({
+                        serverId: serverId, // 需要下载的图片的服务器端ID，由uploadImage接口获得
+                        isShowProgressTips: 0, // 默认为1，显示进度提示
+                        success: function (res) {
+                            self.imageSrcs.push(res.localId) // 返回图片下载后的本地ID
+
+                            if (serverIds.length) {
+                                getImage(serverIds)
+                            }
+                        }
+                    })
+                }
             }
         },
 
@@ -177,4 +217,20 @@
 
 <style lang="less">
     @import '~vux/src/styles/weui/widget/weui-uploader/index.less';
+    .weui-uploader__file {
+        position: relative;
+        border: 1px solid #D9D9D9;
+        background-color: #ebebeb;
+        padding: 2px;
+        box-sizing: border-box;
+
+        .uploader__image {
+            max-width: 73px;
+            max-height: 73px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%)
+        }
+    }
 </style>
