@@ -102,11 +102,11 @@
                 expectTimeStart: null,
                 expectTimeEnd: null,
 
-                actualTimeStart: null,
-                actualTimeEnd: null,
+                actualTimeStart: '',
+                actualTimeEnd: '',
 
-                progress: null,
-                comment: null,
+                progress: 0,
+                comment: '',
 
                 charger: null,
                 planEvaluateName: null,
@@ -138,7 +138,7 @@
                     this.actualTimeEnd = datas.join('-')
                     return true
                 } else {
-                    this.actualTimeEnd = null
+                    this.actualTimeEnd = ''
                     return false
                 }
             }
@@ -178,16 +178,14 @@
 
             // 提交汇报
             submit () {
-                return this.$http(window.API.addReport, {
-                    params: {
-                        taskId: this.taskId,
-                        progress: this.progress,
-                        actualTimeStart: this.actualTimeStart,
-                        actualTimeEnd: this.actualTimeEnd,
-                        comment: this.comment,
-                        media_ids: this.media_ids,
-                        media_Names: this.media_Names
-                    }
+                return this.$http.post(window.API.addReport, {
+                    taskId: this.taskId,
+                    progress: this.progress,
+                    actualTimeStart: this.actualTimeStart,
+                    actualTimeEnd: this.actualTimeEnd,
+                    comment: this.comment,
+                    media_ids: this.media_ids,
+                    media_Names: this.media_Names
                 }).then(result => {
                     if (result.data.success) {
                         this.loading = false
@@ -222,6 +220,7 @@
                         localId: localId, // 需要上传的图片的本地ID，由chooseImage接口获得
                         isShowProgressTips: 1, // 默认为1，显示进度提示
                         success: function (res) {
+                            alert('serverId:', res, res.serverId)
                             self.media_ids.push(res.serverId) // 返回图片的服务器端ID
                             self.media_Names.push(new Date().getTime() + index) // 返回图片的服务器端ID
                         }
