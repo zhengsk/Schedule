@@ -1,7 +1,7 @@
 <template>
     <div class="task-details">
         <div class="task-details-summary">
-            <h1>主体工程</h1>
+            <h1>{{taskName}}</h1>
 
             <group>
                 <cell title="计划时间：" :value="expectTimeStart + '-' + expectTimeEnd"></cell>
@@ -65,9 +65,11 @@
                     <flexbox-item>
                         <x-button type="primary" @click.native="addReport">汇 报</x-button>
                     </flexbox-item>
-                    <flexbox-item>
-                        <x-button type="primary" @click.native="addEvaluate">评 价</x-button>
-                    </flexbox-item>
+                    <template v-if="isShowAddEvaluate">
+                        <flexbox-item>
+                            <x-button type="primary" @click.native="addEvaluate">评 价</x-button>
+                        </flexbox-item>
+                    </template>
                 </flexbox>
             </div>
         </div>
@@ -104,6 +106,7 @@
         data () {
             return {
                 taskId: null,
+                taskName: null,
                 expectTimeStart: null,
                 expectTimeEnd: null,
                 charger: null,
@@ -112,7 +115,9 @@
                 evaluateList: [],
 
                 showListType: null,
-                swiperHeight: '500px'
+                swiperHeight: '500px',
+
+                isShowAddEvaluate: false
             }
         },
 
@@ -127,12 +132,29 @@
                     }
                 }).then(result => {
                     let data = result.data.data
+                    this.taskName = data.taskName
                     this.expectTimeStart = data.expectTimeStart
                     this.expectTimeEnd = data.expectTimeEnd
                     this.charger = data.charger
                     this.planEvaluateName = data.planEvaluateName
                     this.reportList = data.reportList
                     this.evaluateList = data.evaluateList
+
+                    if (data.progress === 100) {
+                        this.getEvaluateType()
+                    }
+                })
+            },
+
+            // 评价类型下拉, 如果没有说明没有权限
+            getEvaluateType () {
+                return this.$http(window.API.evaluateType, {
+                    params: {
+                        taskId: this.taskId
+                    }
+                }).then(result => {
+                    let data = result.data.data
+                    this.isShowAddEvaluate = data.length
                 })
             },
 

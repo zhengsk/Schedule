@@ -1,7 +1,7 @@
 <template>
     <div class="task-details">
         <div class="task-details-summary">
-            <h1>主体工程</h1>
+            <h1>{{taskName}}</h1>
             <!--
                 "reportDate":"17-05-09",
                 "actualTimeStart":"17-05-08",
@@ -89,6 +89,7 @@
             return {
                 loading: false,
 
+                taskName: null,
                 reportId: null,
                 reportor: null,
                 reportDate: null,
@@ -127,8 +128,8 @@
                 this.imageSrcs.forEach(src => {
                     images.push({
                         src: src,
-                        w: 900,
-                        h: 1600
+                        w: 960,
+                        h: 1280
                     })
                 })
                 return images
@@ -147,6 +148,7 @@
                     let data = result.data.data
                     this.loading = false
 
+                    this.taskName = data.taskName
                     this.reportor = data.reportor
                     this.progress = data.progress
                     this.reportDate = data.reportDate

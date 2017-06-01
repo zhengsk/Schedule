@@ -1,7 +1,7 @@
 <template>
     <div class="task-details">
         <div class="task-details-summary">
-            <h1>主体工程</h1>
+            <h1>{{taskName}}</h1>
 
             <group>
                 <cell title="责任人：" :value="charger"></cell>
@@ -97,6 +97,7 @@
                 commited: false,
 
                 taskId: null,
+                taskName: null,
                 expectTimeStart: null,
                 expectTimeEnd: null,
 
@@ -160,6 +161,7 @@
                     }
                 }).then(result => {
                     let data = result.data.data
+                    this.taskName = data.taskName
                     this.expectTimeStart = data.expectTimeStart
                     this.expectTimeEnd = data.expectTimeEnd
                     this.charger = data.charger
