@@ -29,6 +29,8 @@
             </li>
         </ul>
 
+        <div class="date-info" v-if="!projectList.length">没有数据</div>
+
         <div v-transfer-dom>
             <loading v-model="loading" :text="'加载中...'"></loading>
         </div>
@@ -63,9 +65,6 @@
                 taskTypes: [[{
                     name: '主项计划',
                     value: '1'
-                }, {
-                    name: '专项计划',
-                    value: '2'
                 }]],
 
                 // 时间进度分类
@@ -181,6 +180,30 @@
                 this.loading = loading
             },
 
+            // 主任务列表
+            getTaskTypeList () {
+                return this.$http(window.API.taskTypeList, {
+                    params: {
+                        projectId: this.projectId
+                    }
+                }).then(result => {
+                    let data = result.data.data
+                    let list = []
+                    for (let i = 0, len = data.length; i < len; i++) {
+                        let item = data[i]
+                        list.push({
+                            name: item.taskTypeName,
+                            value: item.taskType
+                        })
+                        if (item.selected) {
+                            this.taskType = [item.taskType]
+                        }
+                    }
+
+                    this.taskTypes = [list]
+                })
+            },
+
             // 责任人列表
             getChargerList () {
                 return this.$http(window.API.chargerList, {
@@ -209,14 +232,22 @@
             getTaskList () {
                 this.loading = true
 
+                var params = {
+                    projectId: this.projectId,
+                    taskType: this.taskType[0],
+                    chargerId: this.chargerType[0],
+                    progressType: this.progressType[0],
+                    evaluateType: this.evaluateType[0]
+                }
+
+                // Set to search query, for page back.
+                this.$router.replace({
+                    path: 'taskList',
+                    query: params
+                })
+
                 return this.$http(window.API.taskList, {
-                    params: {
-                        projectId: this.projectId,
-                        taskType: this.taskType[0],
-                        chargerId: this.chargerType[0],
-                        progressType: this.progressType[0],
-                        evaluateType: this.evaluateType[0]
-                    }
+                    params: params
                 }).then(result => {
                     let data = result.data
                     this.projectList = data.data
@@ -246,12 +277,28 @@
         },
 
         created () {
-            this.projectId = this.$route.query.projectId
+            var query = this.$route.query
+            this.projectId = query.projectId
 
-            // Get chargerList
-            this.getChargerList().then(result => {
-                this.getTaskList()
-            })
+            // Get taskTypeList and chargerList
+            this.$http.all([this.getTaskTypeList(), this.getChargerList()])
+                .then(this.$http.spread(() => {
+                    // Set data from query data.
+                    if (query.taskType) {
+                        this.taskType = [query.taskType]
+                    }
+                    if (query.progressType) {
+                        this.progressType = [query.progressType]
+                    }
+                    if (query.evaluateType) {
+                        this.evaluateType = [query.evaluateType]
+                    }
+                    if (query.chargerId) {
+                        this.chargerType = [query.chargerId]
+                    }
+
+                    this.getTaskList()
+                }))
         },
 
         mounted () {
@@ -263,6 +310,12 @@
 <style>
     .task-page-list {
         position: relative;
+    }
+
+    .task-list-page .date-info {
+        text-align: center;
+        padding:1em 0;
+        color: #CCC;
     }
 
     .task-filter {

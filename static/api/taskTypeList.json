@@ -1,0 +1,19 @@
+{
+  "data": [
+    {
+      "selected": true,
+      "taskType": "1",
+      "taskTypeName": "主项计划"
+    },{
+      "taskType": "2",
+      "taskTypeName": "xx计划"
+    },{
+      "taskType": "3",
+      "taskTypeName": "yy计划"
+    }
+  ],
+  "error": null,
+  "errorCode": 0,
+  "projectId": "SH002",
+  "success": true
+}

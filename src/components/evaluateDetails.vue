@@ -78,7 +78,7 @@
 
                 return this.$http(window.API.evaluateDetails, {
                     params: {
-                        taskId: this.taskId
+                        evaluateBillId: this.$route.query.evaluateBillId
                     }
                 }).then(result => {
                     let data = result.data.data
@@ -99,8 +99,6 @@
         },
 
         created () {
-            this.taskId = this.$route.query.taskId
-
             this.getTaskDetails().then(result => {
                 this.showListType = 0
             })

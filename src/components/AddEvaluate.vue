@@ -156,10 +156,10 @@
             },
 
             // 评价结果下拉列表
-            getEvaluateResult () {
+            getEvaluateResult (val) {
                 return this.$http(window.API.evaluateResult, {
                     params: {
-                        evaluateId: this.evaluateId[0]
+                        evaluateId: val[0]
                     }
                 }).then(result => {
                     let data = result.data.data
@@ -172,6 +172,7 @@
                     })
 
                     this.evaluateResultData = [data]
+                    this.evaluateResult = []
                 })
             },
 
