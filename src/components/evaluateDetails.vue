@@ -2,24 +2,39 @@
     <div class="task-details">
         <div class="task-details-summary">
             <h1>{{taskName}}</h1>
-            <!--
-            {
-                "evalucationPerson":"查玉菡",
-                "taskName":"质量检查点",
-                "evaluateType":"进度评价",
-                "result":"按时完成",
-                "comment":"2222222",
-                "bookedDate":"17-05-12"
-            }
-             -->
             <group>
                 <cell title="评价人：" :value="evalucationPerson"></cell>
                 <cell title="汇报时间：" :value="bookedDate"></cell>
 
                 <cell title="评价类型：" :value="evaluateType"></cell>
-                <cell title="评价结果：" :value="result"></cell>
 
-                <x-textarea title="汇报描述：" v-model="comment" :readonly='true' placeholder="汇报内容"></x-textarea>
+                <div class="weui-cell">
+                    <div class="vux-cell-bd vux-cell-primary" style="min-width:6em;">
+                        <p>
+                            <label class="vux-label">
+                                <div><span style="width: 6em;">评价结果：</span></div>
+                            </label>
+                        </p>
+                        <span class="vux-label-desc"></span>
+                    </div>
+                    <div class="weui-cell__ft">
+                        {{result}}
+                    </div>
+                </div>
+
+                <div class="weui-cell">
+                    <div class="vux-cell-bd vux-cell-primary" style="min-width:6em;">
+                        <p>
+                            <label class="vux-label">
+                                <div><span style="width: 6em;">汇报描述：</span></div>
+                            </label>
+                        </p>
+                        <span class="vux-label-desc"></span>
+                    </div>
+                    <div class="weui-cell__ft">
+                        {{comment}}
+                    </div>
+                </div>
 
             </group>
 

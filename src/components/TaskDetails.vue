@@ -43,12 +43,12 @@
                         <ul class="report-list">
                             <li v-for='item in evaluateList'  @click="evaluateDetails(item.evaluateBillId)">
                                 <div class="report-time">
-                                    <span>时间：</span><span v-text='item.date'></span>
-                                    <span class="report-reportor">{{item.evaluator}}</span>
+                                    <span>时间：</span><span v-text='item.bookDate'></span>
+                                    <span class="report-reportor">{{item.person}}</span>
                                 </div>
                                 <div class="report-info evaluate-info">
                                     <div>
-                                        <span>{{item.evaluateName}}：</span>{{item.resultName}}
+                                        <span>{{item.type}}：</span>{{item.result}}
                                     </div>
                                     <div class="evaluate-comment">
                                         <span>评价内容：</span>{{item.comment}}

@@ -24,7 +24,8 @@
                 </template>
 
 
-                <cell :title="'进度：' + progress +'%'" primary="content">
+                <cell primary="content">
+                    <div slot="title" v-html="progressTitle"></div>
                     <range v-model="progress" :min="0" :max="100" :range-bar-height="5"></range>
                 </cell>
                 <x-textarea title="汇报描述：" v-model="comment" placeholder="汇报内容"></x-textarea>
@@ -124,9 +125,16 @@
         computed: {
             timeStartAble () {
                 if (this.actualTimeStart) {
-                    return true
-                } else {
                     return false
+                } else {
+                    var date = new Date()
+                    var datas = [
+                        date.getFullYear(),
+                        ('0' + (date.getMonth() + 1)).substr(-2),
+                        ('0' + date.getDate()).substr(-2)
+                    ]
+                    this.actualTimeStart = datas.join('-')
+                    return true
                 }
             },
 
@@ -148,6 +156,9 @@
                     this.actualTimeEnd = ''
                     return false
                 }
+            },
+            progressTitle () {
+                return '进度：' + this.progress + '%'
             }
         },
 

@@ -1,4 +1,4 @@
-
+/*
 let API = {
     // 0.登录接口
     login: './static/api/login.json',
@@ -51,8 +51,8 @@ let API = {
     taskTypeList: './static/api/taskTypeList.json'
     // ./taskTypeList
 }
+*/
 
-/*
 let API = {
     // 0.登录接口
     // login: './static/api/login.json',
@@ -102,10 +102,10 @@ let API = {
     evaluateDetails: './taskEvaluateDetails',
 
     // 12.任务类型
-    //taskTypeList: './static/api/taskTypeList.json'
+    // taskTypeList: './static/api/taskTypeList.json'
     taskTypeList: './taskTypeList'
 }
-*/
+
 window.API = API
 
 export default API

@@ -3,7 +3,7 @@
     "taskId": "Y2nvRqXNTRuRNb7+MObCGZDM8is=",
     "taskName": "阶段性成果",
     "actualTimeEnd": null,
-    "actualTimeStart": "2017-04-25",
+    "actualTimeStart": null,
     "charger": "周小刚",
     "expectTimeEnd": "2017-04-25",
     "expectTimeStart": "2017-04-25",
@@ -12,56 +12,14 @@
     "qualityEvaluateName": "查玉菡",
     "evaluateList": [
       {
-        "evaluator": "周中庆",
-        "date": "2017-05-12",
+        "person": "查玉菡",
+        "bookDate": "2017-06-04",
 
-        "evaluateId": "评价类型ID",
-        "evaluateName": "评价类型名称",
+        "type": "质量评价",
+        "result": "YGyl1C4RQxiKV8FbYUeCfVTic/c=",
 
-        "resultId": "评价结果ID",
-        "resultName": "评价结果名称",
-
-        "comment": "可以，评价内容，完成可以",
-        "evaluateBillId": "记录ID"
-      },
-      {
-        "evaluator": "周中庆",
-        "date": "2017-05-12",
-
-        "evaluateId": "评价类型ID",
-        "evaluateName": "评价类型名称",
-
-        "resultId": "评价结果ID",
-        "resultName": "评价结果名称",
-
-        "comment": "可以，评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容，完成可以",
-        "evaluateBillId": "记录ID"
-      },
-      {
-        "evaluator": "周中庆",
-        "date": "2017-05-12",
-
-        "evaluateId": "评价类型ID",
-        "evaluateName": "评价类型名称",
-
-        "resultId": "评价结果ID",
-        "resultName": "评价结果名称",
-
-        "comment": "可以，评价内容，完成可以",
-        "evaluateBillId": "记录ID"
-      },
-      {
-        "evaluator": "周中庆",
-        "date": "2017-05-12",
-
-        "evaluateId": "评价类型ID",
-        "evaluateName": "评价类型名称",
-
-        "resultId": "评价结果ID",
-        "resultName": "评价结果名称",
-
-        "comment": "可以，评价内容，完成可以",
-        "evaluateBillId": "记录ID"
+        "comment": "ABC的",
+        "evaluateBillId": "I7VxavxWRumO+hpUPWQU9nYpOJ4="
       }
     ],
     "reportList": [
