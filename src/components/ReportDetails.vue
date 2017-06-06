@@ -125,7 +125,17 @@
         computed: {
             previewImages () {
                 var images = []
-                this.imageSrcs.forEach(src => {
+                this.imageSrcs.forEach((src, index) => {
+                    // Get image real size.
+                    (function (src, index) {
+                        var image = new Image()
+                        image.src = src
+                        image.onload = function () {
+                            images[index].w = image.width
+                            images[index].h = image.height
+                        }
+                    })(src, index)
+
                     images.push({
                         src: src,
                         w: 960,
@@ -167,36 +177,15 @@
             },
 
             showImages () {
-                var serverIds = []
+                var accessToken = window.access_token || window.sessionStorage.getItem('access_token')
                 this.medias.forEach(media => {
-                    serverIds.push(media.media_id)
+                    this.imageSrcs.push([
+                        'https://qyapi.weixin.qq.com/cgi-bin/media/get?access_token=',
+                        accessToken,
+                        '&media_id=',
+                        media.media_id
+                    ].join(''))
                 })
-
-                this.downloadImage(serverIds)
-            },
-
-            downloadImage (serverIds) {
-                var self = this
-                getImage(serverIds)
-
-                function getImage (serverIds) {
-                    if (!serverIds.length) {
-                        return false
-                    }
-
-                    var serverId = serverIds.shift()
-                    window.wx.downloadImage({
-                        serverId: serverId, // 需要下载的图片的服务器端ID，由uploadImage接口获得
-                        isShowProgressTips: 0, // 默认为1，显示进度提示
-                        success: function (res) {
-                            self.imageSrcs.push(res.localId) // 返回图片下载后的本地ID
-
-                            if (serverIds.length) {
-                                getImage(serverIds)
-                            }
-                        }
-                    })
-                }
             }
         },
 
