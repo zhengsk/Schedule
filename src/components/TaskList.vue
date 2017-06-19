@@ -7,11 +7,11 @@
             <flexbox-item style="flex: 0 0 30%;">
                 <div class="task-filter-item" @click="showPopupPicker('progress')">{{progressLabel}}</div>
             </flexbox-item>
-            <flexbox-item style="flex: 0 0 20%;">
-                <div class="task-filter-item" @click="showPopupPicker('evaluate')">{{evaluateLabel}}</div>
-            </flexbox-item>
             <flexbox-item>
                 <div class="task-filter-item" @click="showPopupPicker('charger')">{{chargerLabel}}</div>
+            </flexbox-item>
+            <flexbox-item style="flex: 0 0 20%;">
+                <div class="task-filter-item" @click="showPopupPicker('evaluate')">{{evaluateLabel}}</div>
             </flexbox-item>
         </flexbox>
 
@@ -23,7 +23,7 @@
                 <span class="task-list-percent" v-text="item.progress + '%'"></span>
                 <div>
                     <span class="time">
-                        {{item.actualTimeStart}} - {{item.actualTimeEnd}}
+                        {{item.expectTimeStart}} - {{item.expectTimeEnd}}
                     </span>
                 </div>
             </li>
@@ -68,7 +68,7 @@
                 }]],
 
                 // 时间进度分类
-                progressType: ['1'],
+                progressType: ['0'],
                 progressTypes: [[{
                     name: '全部',
                     value: '0'
@@ -332,7 +332,7 @@
         box-sizing: border-box;
         background-color: #F5F5F5;
         border: 1px solid #DCDCDC;
-        font-size: 0.8rem;
+        font-size: 1rem;
         line-height: 1.6rem;
         text-align: center;
         padding: 5px 0;

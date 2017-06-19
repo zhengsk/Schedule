@@ -1,13 +1,13 @@
 <template>
     <div class="task-details add-evaluate">
         <div class="task-details-summary">
-            <h1>主体工程</h1>
+            <h1>{{taskName}}</h1>
 
             <group>
                 <cell title="责任人：" :value="charger"></cell>
                 <cell title="评价人：" :value="planEvaluateName"></cell>
                 <cell title="计划时间：" :value="expectTimeStart + ' - ' + expectTimeEnd"></cell>
-                <cell title="实际时间：" :value="expectTimeStart + ' - ' + expectTimeEnd"></cell>
+                <cell title="实际时间：" :value="actualTimeStart + ' - ' + actualTimeEnd"></cell>
             </group>
 
             <div class="tab-swiper vux-center" id="reportWrapper">
@@ -97,6 +97,7 @@
                 commited: false,
 
                 taskId: null,
+                taskName: null,
                 expectTimeStart: null,
                 expectTimeEnd: null,
 
@@ -185,6 +186,7 @@
                     }
                 }).then(result => {
                     let data = result.data.data
+                    this.taskName = data.taskName
                     this.expectTimeStart = data.expectTimeStart
                     this.expectTimeEnd = data.expectTimeEnd
                     this.charger = data.charger
