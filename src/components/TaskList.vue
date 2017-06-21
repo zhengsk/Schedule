@@ -70,7 +70,7 @@
                 // 时间进度分类
                 progressType: ['0'],
                 progressTypes: [[{
-                    name: '全部',
+                    name: '全部时间',
                     value: '0'
                 }, {
                     name: '本月应完成',
@@ -322,7 +322,7 @@
         box-sizing: border-box;
         padding: 8px 5px;
         position: fixed;
-        top: 47px;
+        top: 0px;
         z-index: 10;
         background-color: #FFF;
     }

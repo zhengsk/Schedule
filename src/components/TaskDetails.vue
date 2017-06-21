@@ -6,7 +6,8 @@
             <group>
                 <cell title="计划时间：" :value="expectTimeStart + '-' + expectTimeEnd"></cell>
                 <cell title="责任人：" :value="charger"></cell>
-                <cell title="评价人：" :value="planEvaluateName"></cell>
+                <cell title="质量评价人：" :value="qualityEvaluateName"></cell>
+                <cell title="进度评价人：" :value="planEvaluateName"></cell>
             </group>
 
             <sticky scroll-box="vux_view_box_body" :offset="46" :check-sticky-support="true">
@@ -110,7 +111,8 @@
                 expectTimeStart: null,
                 expectTimeEnd: null,
                 charger: null,
-                planEvaluateName: null,
+                planEvaluateName: '',
+                qualityEvaluateName: '',
                 reportList: [],
                 evaluateList: [],
 
@@ -137,6 +139,7 @@
                     this.expectTimeEnd = data.expectTimeEnd
                     this.charger = data.charger
                     this.planEvaluateName = data.planEvaluateName
+                    this.qualityEvaluateName = data.qualityEvaluateName
                     this.reportList = data.reportList
                     this.evaluateList = data.evaluateList
 

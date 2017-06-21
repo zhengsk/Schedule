@@ -1,25 +1,27 @@
 <template>
     <div class="task-list-page statistics-page">
-        <flexbox class="task-filter" :gutter="0">
-            <flexbox-item style="flex: 0 0 50%;">
-                <div
-                    class="task-filter-item"
-                    :class="checkedMonth ? 'checked' : ''"
-                    @click="switchTo('month')"
-                >月 报</div>
-            </flexbox-item>
-            <flexbox-item style="flex: 0 0 50%;">
-                <div
-                    class="task-filter-item"
-                    :class="checkedPercent ? 'checked' : ''"
-                    @click="switchTo('percent')"
-                >考核率</div>
-            </flexbox-item>
-        </flexbox>
 
         <div class="iframe">
             <iframe :src="iframeSrc"></iframe>
         </div>
+
+       <flexbox class="task-filter" :gutter="0">
+           <flexbox-item style="flex: 0 0 50%;">
+               <div
+                   class="task-filter-item"
+                   :class="checkedMonth ? 'checked' : ''"
+                   @click="switchTo('month')"
+               >月 报</div>
+           </flexbox-item>
+           <flexbox-item style="flex: 0 0 50%;">
+               <div
+                   class="task-filter-item"
+                   :class="checkedPercent ? 'checked' : ''"
+                   @click="switchTo('percent')"
+               >考核率</div>
+           </flexbox-item>
+       </flexbox>
+
     </div>
 </template>
 
@@ -107,6 +109,7 @@
     .task-list-page.statistics-page {
         position: relative;
         height: 100%;
+        top: 0;
     }
 
     .statistics-page .task-page-list {
@@ -117,9 +120,12 @@
         box-sizing: border-box;
         padding: 5px 0;
         position: fixed;
-        top: 47px;
+        top: 100%;
+        height: 50px;
+        margin-top: -50px;
         z-index: 10;
         background-color: #FFF;
+
     }
 
     .statistics-page .task-filter-item {

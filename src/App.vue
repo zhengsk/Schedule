@@ -6,14 +6,14 @@
         </div>
 
         <view-box ref="viewBox" :body-padding-top="bodyPaddingTop" :body-padding-bottom="bodyPaddingBottom">
-            <x-header
+            <!-- <x-header
                 class="page-title"
                 slot="header"
                 :left-options="leftOptions"
                 :right-options="rightOptions"
                 :title="title"
                 :transition="headerTransition"
-            ></x-header>
+            ></x-header> -->
 
 
             <transition :name="'vux-pop-' + (direction === 'forward' ? 'in' : 'out')">
@@ -159,11 +159,12 @@
             },
 
             bodyPaddingTop () {
-                return '46px'
+                // return '46px'
+                return 0
             },
 
             bodyPaddingBottom () {
-                if (this.route.path === '/taskDetails') {
+                if (this.route.path === '/taskDetails' || this.route.path === '/statistics') {
                     return '0'
                 } else {
                     return '56px'
@@ -171,7 +172,7 @@
             },
 
             showTabbar () {
-                if (this.route.path === '/taskDetails') {
+                if (this.route.path === '/taskDetails' || this.route.path === '/statistics') {
                     return false
                 } else {
                     return true
