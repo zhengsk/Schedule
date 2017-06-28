@@ -223,6 +223,16 @@
             submit () {
                 this.loading = true
 
+                if (!this.evaluateId[0]) {
+                    alert('请选择评价类型')
+                    return false
+                }
+
+                if (!this.evaluateResult[0]) {
+                    alert('请选择评价结果')
+                    return false
+                }
+
                 return this.$http(window.API.addEvaluate, {
                     params: {
                         taskId: this.taskId,

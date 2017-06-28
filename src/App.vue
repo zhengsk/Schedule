@@ -202,6 +202,26 @@
         height: 100%;
     }
 
+    #app .weui-tabbar.page-tabbar {
+        background-color: #676a75;
+    }
+
+    #app .weui-tabbar__item{
+        color: #FFF;
+    }
+
+    #app .weui-tabbar__label{
+        color: #FFF;
+    }
+
+    // #app .weui-bar__item_on{
+    //     background-color: #555;
+    // }
+
+    #app .weui-bar__item_on .weui-tabbar__icon{
+        color: #FFF;
+    }
+
     .router-view {
         width: 100%;
         top: 46px;
@@ -227,7 +247,12 @@
     }
 
     .page-tabbar .weui-tabbar__label{
-        font-size: .85rem;
+        font-size: 1rem;
+    }
+
+    .page-tabbar .weui-tabbar__icon {
+        width: 25px;
+        height: 25px;
     }
 
     .tabbar-item .iconfont{
