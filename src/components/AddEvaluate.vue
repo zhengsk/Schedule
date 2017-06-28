@@ -221,8 +221,6 @@
 
             // 提交汇报
             submit () {
-                this.loading = true
-
                 if (!this.evaluateId[0]) {
                     alert('请选择评价类型')
                     return false
@@ -232,6 +230,8 @@
                     alert('请选择评价结果')
                     return false
                 }
+
+                this.loading = true
 
                 return this.$http(window.API.addEvaluate, {
                     params: {
@@ -246,6 +246,8 @@
                         this.commited = true
                         this.$router.go(-1)
                     }
+                }).catch(() => {
+                    this.loading = false
                 })
             }
         },
