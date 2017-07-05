@@ -113,7 +113,7 @@
 
         computed: {
             taskLabel () {
-                return this.getLabel(this.taskType, this.taskTypes)
+                return this.getLabel(this.taskType, this.taskTypes).substring(0, 4)
             },
 
             progressLabel () {
@@ -208,7 +208,8 @@
             getChargerList () {
                 return this.$http(window.API.chargerList, {
                     params: {
-                        projectId: this.projectId
+                        projectId: this.projectId,
+                        taskType: this.taskType[0]
                     }
                 }).then(result => {
                     let data = result.data.data
