@@ -97,10 +97,10 @@
                 }]],
 
                 // 责任人
-                chargerType: ['##'],
+                chargerType: ['total'],
                 chargerTypes: [[{
-                    name: '全部',
-                    value: '##'
+                    name: '责任人',
+                    value: 'total'
                 }]],
 
                 popupPickerValue: [],
@@ -145,7 +145,10 @@
 
                 case this.taskTypes:
                     this.taskType = value
+
                     this.getChargerList() // 获取责任人列表
+                    this.chargerType[0] = 'total'
+
                     break
 
                 case this.progressTypes:
