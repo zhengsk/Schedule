@@ -113,7 +113,7 @@
 
         computed: {
             taskLabel () {
-                return this.getLabel(this.taskType, this.taskTypes).substring(0, 4)
+                return this.getLabel(this.taskType, this.taskTypes).substring(0, 5)
             },
 
             progressLabel () {
@@ -145,6 +145,7 @@
 
                 case this.taskTypes:
                     this.taskType = value
+                    this.getChargerList() // 获取责任人列表
                     break
 
                 case this.progressTypes:
