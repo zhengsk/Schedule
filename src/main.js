@@ -62,7 +62,30 @@ const routes = [{
 }]
 
 const router = new VueRouter({
-    routes
+    mode: 'history',
+    routes,
+    scrollBehavior (to, from, savedPosition) {
+        let routerView = document.querySelector('#routerView')
+        if (routerView) {
+            routerView.parentNode.scrollTop = to.meta.scrollTop || 0
+        }
+    }
+})
+
+router.beforeEach((to, from, next) => {
+    let routerView = document.querySelector('#routerView')
+    if (routerView) {
+        let top = routerView.parentNode.scrollTop
+        from.meta.scrollTop = top
+    }
+    next()
+})
+
+router.afterEach((to, from, next) => {
+    // let routerView = document.querySelector('#routerView')
+    // if (routerView) {
+    //     routerView.parentNode.scrollTop = to.meta.scrollTop || 0
+    // }
 })
 
 let store = new Vuex.Store({

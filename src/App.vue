@@ -1,39 +1,29 @@
 <template>
     <div id="app">
 
-        <div v-transfer-dom>
-            <loading v-model="isLoading"></loading>
-        </div>
 
-        <view-box ref="viewBox" :body-padding-top="bodyPaddingTop" :body-padding-bottom="bodyPaddingBottom">
-            <!-- <x-header
-                class="page-title"
-                slot="header"
-                :left-options="leftOptions"
-                :right-options="rightOptions"
-                :title="title"
-                :transition="headerTransition"
-            ></x-header> -->
+            <view-box ref="viewBox" :body-padding-top="bodyPaddingTop" :body-padding-bottom="bodyPaddingBottom">
+
+                <!-- <transition :name="'vux-pop-' + (direction === 'forward' ? 'in' : 'out')"> -->
+                    <keep-alive>
+                        <router-view class="router-view" id="routerView"></router-view>
+                    </keep-alive>
+                <!-- </transition> -->
 
 
-            <transition :name="'vux-pop-' + (direction === 'forward' ? 'in' : 'out')">
-                <router-view class="router-view"></router-view>
-            </transition>
+                <tabbar class="page-tabbar" icon-class="vux-center" slot="bottom" v-if="showTabbar">
+                    <tabbar-item :link="{path:'/'}" :selected="route.path !== '/statistics'">
+                        <span class="tabbar-item" slot="icon" style="position:relative;top: -2px;"><i class="iconfont icon-gongchengdangan"></i></span>
+                        <span slot="label">项目</span>
+                    </tabbar-item>
 
+                    <tabbar-item :link="{path:'/statistics'}" :selected="route.path === '/statistics'">
+                        <span class="tabbar-item" slot="icon"><i class="iconfont icon-report"></i></span>
+                        <span slot="label">报表</span>
+                    </tabbar-item>
+                </tabbar>
 
-            <tabbar class="page-tabbar" icon-class="vux-center" slot="bottom" v-if="showTabbar">
-                <tabbar-item :link="{path:'/'}" :selected="route.path !== '/statistics'">
-                    <span class="tabbar-item" slot="icon" style="position:relative;top: -2px;"><i class="iconfont icon-gongchengdangan"></i></span>
-                    <span slot="label">项目</span>
-                </tabbar-item>
-
-                <tabbar-item :link="{path:'/statistics'}" :selected="route.path === '/statistics'">
-                    <span class="tabbar-item" slot="icon"><i class="iconfont icon-report"></i></span>
-                    <span slot="label">报表</span>
-                </tabbar-item>
-            </tabbar>
-
-        </view-box>
+            </view-box>
 
     </div>
 </template>
@@ -123,7 +113,6 @@
                 path: state => state.route.path,
                 deviceready: state => state.app.deviceready,
                 demoTop: state => state.vux.demoScrollTop,
-                isLoading: state => state.vux.isLoading,
                 direction: state => state.vux.direction
             }),
 
