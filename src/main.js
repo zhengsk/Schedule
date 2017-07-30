@@ -30,39 +30,71 @@ window.API = API
 
 const routes = [{
     path: '/',
-    component: ProjectList
+    component: ProjectList,
+    meta: {
+        keepAlive: true
+    }
+},
+{
+    path: '/index.html',
+    component: ProjectList,
+    meta: {
+        keepAlive: true
+    }
 },
 {
     path: '/taskList',
-    component: TaskList
+    component: TaskList,
+    meta: {
+        keepAlive: true
+    }
 },
 {
     path: '/taskDetails',
-    component: TaskDetails
+    component: TaskDetails,
+    meta: {
+        keepAlive: true
+    }
 },
 {
     path: '/addReport',
-    component: AddReport
+    component: AddReport,
+    meta: {
+        keepAlive: false
+    }
 },
 {
     path: '/addEvaluate',
-    component: AddEvaluate
+    component: AddEvaluate,
+    meta: {
+        keepAlive: false
+    }
 },
 {
     path: '/reportDetails',
-    component: ReportDetails
+    component: ReportDetails,
+    meta: {
+        keepAlive: false
+    }
 },
 {
     path: '/evaluateDetails',
-    component: EvaluateDetails
+    component: EvaluateDetails,
+    meta: {
+        keepAlive: false
+    }
 },
 {
     path: '/statistics',
-    component: Statistics
+    component: Statistics,
+    meta: {
+        keepAlive: false
+    }
 }]
 
 const router = new VueRouter({
     mode: 'history',
+    base: '/mobile/sch/',
     routes,
     scrollBehavior (to, from, savedPosition) {
         let routerView = document.querySelector('#routerView')
@@ -81,11 +113,8 @@ router.beforeEach((to, from, next) => {
     next()
 })
 
-router.afterEach((to, from, next) => {
-    // let routerView = document.querySelector('#routerView')
-    // if (routerView) {
-    //     routerView.parentNode.scrollTop = to.meta.scrollTop || 0
-    // }
+router.afterEach((to, from) => {
+    // alert(JSON.stringify(to))
 })
 
 let store = new Vuex.Store({

@@ -52,8 +52,8 @@
                 var srcs = {
                     // month: 'http://brokers.itgreal.com:7000/mobile/rpt/schRpt.html',
                     // percent: 'http://27.154.54.186:7000/mobile/rpt/projectAchievementRpt.html'
-                    month: '../rpt/schRpt.html',
-                    percent: '../rpt/schRpt.html'
+                    month: '../schrpt/reportsForMonth_curMonth.html',
+                    percent: '../schrpt/reportsForMonth_curMonth.html'
                 }
                 return srcs[this.statisticsType]
             }

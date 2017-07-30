@@ -196,6 +196,14 @@
 
             addEvaluate () {
                 this.$router.push({path: 'addEvaluate', query: { taskId: this.taskId }})
+            },
+
+            init () {
+                this.taskId = this.$route.query.taskId
+
+                this.getTaskDetails().then(result => {
+                    this.showListType = 0
+                })
             }
         },
 
@@ -208,11 +216,11 @@
         },
 
         created () {
-            this.taskId = this.$route.query.taskId
+            this.init()
+        },
 
-            this.getTaskDetails().then(result => {
-                this.showListType = 0
-            })
+        activated () {
+            this.init()
         },
 
         mounted () {

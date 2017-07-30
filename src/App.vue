@@ -6,8 +6,10 @@
 
                 <!-- <transition :name="'vux-pop-' + (direction === 'forward' ? 'in' : 'out')"> -->
                     <keep-alive>
-                        <router-view class="router-view" id="routerView"></router-view>
+                        <router-view class="router-view" id="routerView" v-if="$route.meta.keepAlive"></router-view>
                     </keep-alive>
+
+                    <router-view class="router-view" id="routerView" v-if="!$route.meta.keepAlive"></router-view>
                 <!-- </transition> -->
 
 

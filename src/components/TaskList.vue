@@ -278,32 +278,40 @@
                         taskId: taskId
                     }
                 })
+            },
+
+            init () {
+                var query = this.$route.query
+                this.projectId = query.projectId
+
+                // Get taskTypeList and chargerList
+                this.$http.all([this.getTaskTypeList(), this.getChargerList()])
+                    .then(this.$http.spread(() => {
+                        // Set data from query data.
+                        if (query.taskType) {
+                            this.taskType = [query.taskType]
+                        }
+                        if (query.progressType) {
+                            this.progressType = [query.progressType]
+                        }
+                        if (query.evaluateType) {
+                            this.evaluateType = [query.evaluateType]
+                        }
+                        if (query.chargerId) {
+                            this.chargerType = [query.chargerId]
+                        }
+
+                        this.getTaskList()
+                    }))
             }
         },
 
         created () {
-            var query = this.$route.query
-            this.projectId = query.projectId
+            this.init()
+        },
 
-            // Get taskTypeList and chargerList
-            this.$http.all([this.getTaskTypeList(), this.getChargerList()])
-                .then(this.$http.spread(() => {
-                    // Set data from query data.
-                    if (query.taskType) {
-                        this.taskType = [query.taskType]
-                    }
-                    if (query.progressType) {
-                        this.progressType = [query.progressType]
-                    }
-                    if (query.evaluateType) {
-                        this.evaluateType = [query.evaluateType]
-                    }
-                    if (query.chargerId) {
-                        this.chargerType = [query.chargerId]
-                    }
-
-                    this.getTaskList()
-                }))
+        activated () {
+            this.init()
         },
 
         mounted () {
