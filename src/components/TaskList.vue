@@ -19,7 +19,7 @@
 
         <ul class="task-list">
             <li v-for="item in projectList" class="task-list-item" :class="taskStatusClass(item)"  @click="gotoTaskDetails(item.taskId)">
-                <p v-text="item.taskName" :style="'color:' + (item.taskType === '里程碑任务' ? 'red' : 'inherit')"></p>
+                <p v-text="item.taskName" :style="taskNameStyle(item)"></p>
                 <span class="task-list-percent" v-text="item.progress + '%'"></span>
                 <div>
                     <span class="time">
@@ -138,6 +138,23 @@
                     }
                 }
                 return ''
+            },
+
+            taskNameStyle (task) {
+                let colorName = 'inherit'
+                switch (task.taskType) {
+                case '里程碑任务':
+                    colorName = 'red'
+                    break
+                case '关键任务':
+                    colorName = 'blue'
+                    break
+                default:
+                    colorName = 'inherit'
+                }
+                return {
+                    color: colorName
+                }
             },
 
             popupPickerChange (value) {
