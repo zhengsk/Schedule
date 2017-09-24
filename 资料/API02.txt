@@ -1,0 +1,473 @@
+【链接】https://vpn.itg.com.cn/...
+https://vpn.itg.com.cn
+
+账号：liuzp     密码： Knight8
+
+连接后直接访问  \\172.16.202.231\d$\kds7\eas\server\deploy\eas.ear\mobile.war\sch
+页面访问路径  http://172.16.202.231:7000/mobile/sch/
+
+172.16.202.231 的用户名： administrator 密码：1
+
+登录
+http://27.154.54.186:7000/mobile/wdwf2/login?userName=liuzp&password=&appClientId=10002
+
+1、项目列表：
+http://27.154.54.186:7000/mobile/sch/projectList.action
+{
+    "data":[
+        {
+            "projectId":"SH001",
+            "projectName":"上海国贸天悦（37A）"
+        },
+        {
+            "projectId":"SH002",
+            "projectName":"上海国贸天悦（54A）"
+        },
+        {
+            "projectId":"SH003",
+            "projectName":"上海国贸天悦（57A）"
+        }
+    ],
+    "error":null,
+    "errorCode":0,
+    "success":true
+}
+
+2、责任人列表：
+private String projectId;  //项目ID 
+http://27.154.54.186:7000/mobile/sch/adminPersonList?projectId=SH002
+{
+    "data":[
+        {
+            "chargerId":"20120323078",
+            "chargerName":"周小刚"
+        },
+        {
+            "chargerId":"##",
+            "chargerName":"全部",
+            "selected":true
+        }
+    ],
+    "error":null,
+    "errorCode":0,
+    "projectId":"SH002",
+    "success":true
+}
+
+3、任务列表
+private String chargerId;//责任人
+private String taskType;//1：主项计划（默认选中）  2：专项计划
+private String progressType;//1:本月应完成（默认选中）     2	下月将开始  3	逾期任务    0	全部
+private String evaluateType;//1	空（默认选中）  2	待评价    3	已评价
+private String projectId;  //项目ID
+
+http://27.154.54.186:7000/mobile/sch/taskList?projectId=SH002&chargerId=&progressType=&evaluateType=1&taskType=1
+{
+    "data":[
+        {
+            "taskId":"Y2nvRqXNTRuRNb7+MObCGZDM8is=",
+            "expectTimeEnd":"17-04-25",
+            "taskName":"阶段性成果",
+            "seq":1,
+            "taskType":"一般任务",
+            "actualTimeStart":"17-04-25",
+            "actualTimeEnd":null,
+            "expectTimeStart":"17-04-25",
+            "status":"3",
+            "progress":20
+        },
+        {
+            "taskId":"ZZ35CyCZSVqjPngACAOFe5DM8is=",
+            "expectTimeEnd":"17-04-25",
+            "taskName":"质量检查点",
+            "seq":2,
+            "taskType":"一般任务",
+            "actualTimeStart":"17-04-25",
+            "actualTimeEnd":"17-05-09",
+            "expectTimeStart":"17-04-25",
+            "status":"2",
+            "progress":100
+        },
+        {
+            "taskId":"FPjO9azIRtWOcq2ObMK84pDM8is=",
+            "expectTimeEnd":"17-04-25",
+            "taskName":"现金流",
+            "seq":3,
+            "taskType":"一般任务",
+            "actualTimeStart":null,
+            "actualTimeEnd":null,
+            "expectTimeStart":"17-04-25",
+            "status":"3",
+            "progress":0
+        },
+        {
+            "taskId":"Fz3cZMlkS9S6lGrhBRjHsJDM8is=",
+            "expectTimeEnd":"17-04-25",
+            "taskName":"形象进度",
+            "seq":4,
+            "taskType":"一般任务",
+            "actualTimeStart":"17-04-25",
+            "actualTimeEnd":null,
+            "expectTimeStart":"17-04-25",
+            "status":"3",
+            "progress":20
+        },
+        {
+            "taskId":"nxN+SsB+T8+NlpMhkUt8PpDM8is=",
+            "expectTimeEnd":"17-04-25",
+            "taskName":"所有业务类型",
+            "seq":5,
+            "taskType":"一般任务",
+            "actualTimeStart":null,
+            "actualTimeEnd":null,
+            "expectTimeStart":"17-04-25",
+            "status":"3",
+            "progress":0
+        }
+    ],
+    "error":null,
+    "errorCode":0,
+    "success":true
+}
+
+4、任务详情
+private String taskId;  //任务ID
+http://27.154.54.186:7000/mobile/sch/taskDetails?taskId=Y2nvRqXNTRuRNb7%2bMObCGZDM8is%3d
+{
+    "data":{
+        "planEvaluateName":"查玉菡",
+        "taskId":"Y2nvRqXNTRuRNb7+MObCGZDM8is=",
+        "expectTimeEnd":"17-04-25",
+        "reportList":[
+            {
+                "startDate":"17-05-08",
+                "reportId":"2ajfNulLQcGaWiabuAveunX1RfM=",
+                "reportor":"刘志鹏",
+                "endDate":null,
+                "comment":"dsdsdsd",
+                "date":"17-05-09",
+                "progress":20
+            }
+        ],
+        "taskName":"阶段性成果",
+        "qualityEvaluateName":"查玉菡",
+        "actualTimeStart":"17-04-25",
+        "charger":"周小刚",
+        "actualTimeEnd":null,
+        "expectTimeStart":"17-04-25",
+        "progress":20,
+        "evaluateList":[
+
+        ]
+    },
+    "error":null,
+    "errorCode":0,
+    "success":true
+}
+
+5、汇报任务
+private String taskId;  //任务ID
+private BigDecimal progress;  //进度
+private Date actualTimeStart;
+private Date actualTimeEnd;
+private String comment; 
+private String[] media_ids;// 16whBoHvmi0c5B5TE-7XxJBQjsqW7dvoJrELIIQvl4yPTEO8qmZVFv7nTWaiCEtwFH7LIKwWGfAA2C-k5Qt9RxA（图片由页面上传到微信企业号的素材库后返回的ID）
+private String[] media_Names;//图片名称	
+http://27.154.54.186:7000/mobile/sch/taskProgressRpt?taskId=Y2nvRqXNTRuRNb7%2bMObCGZDM8is%3D&progress=30&actualTimeStart=2017-5-8&actualTimeEnd=2017-5-18&comment=dsdsdsd323&media_ids=1UiYYLh1ceg3Dfr4P1ZV2LJycj9Q9LnWjpbJqj-D6tWBk9uRK9PfZnKM1CjlK_uaIKsEqnVL2eRTseB90sNrGhw&media_Names=2222
+{
+    "data":{
+        "reportId":"6f3EP6YWT96f/UL0OJKzbXX1RfM="
+    },
+    "error":null,
+    "errorCode":0,
+    "success":true
+}
+
+
+6、汇报记录详情
+private String reportId;  //汇报ID
+http://27.154.54.186:7000/mobile/sch/taskReportHisDetails?reportId=2ajfNulLQcGaWiabuAveunX1RfM%3d
+{
+    "data":{
+        "reportDate":"17-05-09",
+        "actualTimeStart":"17-05-08",
+        "actualTimeEnd":"17-05-18",
+        "reportId":"2ajfNulLQcGaWiabuAveunX1RfM=",
+        "reportor":"刘志鹏",
+        "comment":"dsdsdsd",
+        "progress":20,
+        "medias":[
+            {
+                "media_id":"1UiYYLh1ceg3Dfr4P1ZV2LJycj9Q9LnWjpbJqj-D6tWBk9uRK9PfZnKM1CjlK_uaIKsEqnVL2eRTseB90sNrGhw",
+                "media_Name":"111111111"
+            }
+        ]
+    },
+    "error":null,
+    "errorCode":0,
+    "success":true
+}
+
+
+
+7、评价类型
+private String taskId;  //任务id
+http://27.154.54.186:7000/mobile/sch/evaluateTypeList?taskId=Y2nvRqXNTRuRNb7%2bMObCGZDM8is%3d
+
+{
+    "data":[
+        {
+            "evaluateId":"1SCHEDULE",
+            "projectName":"进度评价"
+        },
+        {
+            "evaluateId":"2QUALITY",
+            "projectName":"质量评价"
+        }
+    ],
+    "error":null,
+    "errorCode":0,
+    "success":true
+}
+
+8、评价结果
+private String evaluateId;    //任务类别id
+http://27.154.54.186:7000/mobile/sch/evaluateResultList?evaluateId=1SCHEDULE
+{
+    "data":[
+        {
+            "resultId":"02",
+            "resultName":"提前完成"
+        },
+        {
+            "resultId":"01",
+            "resultName":"按时完成"
+        },
+        {
+            "resultId":"04",
+            "resultName":"未完成"
+        },
+        {
+            "resultId":"03",
+            "resultName":"延迟完成"
+        }
+    ],
+    "error":null,
+    "errorCode":0,
+    "success":true
+}
+
+9、任务评价
+private String taskId; //任务ID
+private String evaluateId; //评价类型
+private String resultId;//评价结果
+private String comment;//评价内容
+http://27.154.54.186:7000/mobile/sch/taskEvaluate?evaluateId=1SCHEDULE&taskId=ZZ35CyCZSVqjPngACAOFe5DM8is%3d&resultId=01&comment=2222222
+{
+    "data":{
+        "evaluateBillId":"UidnalQ+TDCve5XIDJG+aHYpOJ4="
+    },
+    "error":null,
+    "errorCode":0,
+    "success":true
+}
+
+
+10、任务评价详情
+private String evaluateBillId; //任务评价ID
+http://27.154.54.186:7000/mobile/sch/taskEvaluateDetails?evaluateBillId=UidnalQ%2bTDCve5XIDJG%2baHYpOJ4%3d
+{
+    "data":{
+        "evalucationPerson":"查玉菡",
+        "taskName":"质量检查点",
+        "evaluateType":"进度评价",
+        "result":"按时完成",
+        "comment":"2222222",
+        "bookedDate":"17-05-12"
+    },
+    "error":null,
+    "errorCode":0,
+    "success":true
+}
+
+11、微信企业号JSAPI签名
+private String url;//当前页面地址
+
+http://27.154.54.186:7000/mobile/sch/getJsSdkSign?url=http://brokers.itgreal.com:7000/mobile/sch/index.html
+{
+    "data":{
+        "jsapi_ticket":"kgt8ON7yVITDhtdwci0qeTo2606wv2tZNXhKttjru4lUSQLCUJ_qKVEbCyhCVBKbs2CCdZly75V6SZjerD9-kw",
+        "signature":"690891bc740fea35061f57341ca85eecabdedd8a",
+        "appId":"wxd11123da30d1131d",
+        "url":"http://brokers.itgreal.com:7000/mobile/sch/index.html",
+        "timestamp":"1494576050",
+        "nonceStr":"0e1180db-7bea-4d80-9647-87942aa00975"
+    },
+    "error":null,
+    "errorCode":0,
+    "success":true
+}
+
+12、任务类型 
+private String projectId;
+http://27.154.54.186:7000/mobile/sch/taskTypeList?projectId=SH002
+{
+    "data":[
+        {
+            "selected":true,
+            "taskType":"1",
+            "taskTypeName":"主项计划"
+        }
+    ],
+    "error":null,
+    "errorCode":0,
+    "projectId":"SH002",
+    "success":true
+}
+
+
+13、 <!--计划月报 月份列表 projectId、taskType-->
+private String taskType;
+private String projectId;
+http://27.154.54.186:7000/mobile/sch/projectMonthReportList?projectId=SH002&taskType=1
+{
+    "data":[
+        {
+            "monthReportId":"mQdPZz2CRt2XmanVxbO77Vh4SVE=",
+            "monthReportName":"2017-5"
+        }
+    ],
+    "error":null,
+    "errorCode":0,
+    "success":true
+}
+
+14、 <!--计划月报 projectId、taskType、 monthReportId-->
+private String monthReportId;
+private String taskType;
+private String projectId;
+http://27.154.54.186:7000/mobile/sch/projectMonthReportData?projectId=SH002&taskType=1&monthReportId=mQdPZz2CRt2XmanVxbO77Vh4SVE%3d
+{
+    "data":{
+        "pieCharData":[
+            {
+                "y":20,
+                "name":"待确认",
+                "count":1
+            },
+            Object{...},
+            Object{...},
+            Object{...},
+            Object{...}
+        ],
+        "nextMonthData":[
+
+        ],
+        "tableData":[
+            {
+                "respPerson":"查玉菡",
+                "isComplete":"否",
+                "realEndDate":"",
+                "planEndDate":"17-04-25",
+                "taskName":"现金流",
+                "description":"sdfdsfsd多岁的",
+                "respDept":"",
+                "state":3,     //0 ：按时完成 1:延时完成  2:带确认 3:延时未完成 4：进行中
+                "planStartDate":"17-04-25",
+                "intendEndDate":"17-04-25",
+                "completePercent":0
+            },
+            Object{...},
+            Object{...},
+            Object{...},
+            Object{...}
+        ]
+    },
+    "error":null,
+    "errorCode":0,
+    "success":true
+} 
+  
+15、 <!--达成率报表  维度选项 projectId-->
+private String projectId;
+http://27.154.54.186:7000/mobile/sch/projectAchievementRptType?projectId=SH002
+{
+    "data":[
+        {
+            "selected":true,
+            "taskType":"1",
+            "taskTypeName":"主项计划"
+        },
+        {
+            "taskType":"2",
+            "taskTypeName":"里程碑计划"
+        },
+        {
+            "taskType":"3",
+            "taskTypeName":"考核计划"
+        }
+    ],
+    "error":null,
+    "errorCode":0,
+    "success":true
+}
+
+
+16、 <!--达成率报表  年度选项 projectId、taskType-->
+private String projectId;
+private String taskType;
+http://27.154.54.186:7000/mobile/sch/projectAchievementRptYear?projectId=SH002&taskType=1
+{
+    "data":[
+        {
+            "yearName":2017,
+            "yearId":2017
+        }
+    ],
+    "error":null,
+    "errorCode":0,
+    "success":true
+}   
+
+
+17、 <!--达成率报表 数据 projectId、taskType、year-->
+private String projectId;
+private String taskType;
+private String yearId;
+http://27.154.54.186:7000/mobile/sch/projectAchievementRpt?projectId=SH002&taskType=1&yearId=2017
+{
+    "data":{
+        "tableDate":[
+            {
+                "taskId":"FPjO9azIRtWOcq2ObMK84pDM8is=",
+                "expectTimeEnd":"17-04-25",
+                "taskName":"现金流",
+                "seq":3,
+                "taskType":"一般任务",
+                "actualTimeStart":"17-04-25",
+                "actualTimeEnd":null,
+                "expectTimeStart":"17-04-25",
+                "status":"3",     //0 ：按时完成 1:延时完成  2:带确认 3:延时未完成 4：进行中
+                "progress":0
+            },
+            Object{...},
+            Object{...},
+            Object{...},
+            Object{...}
+        ],
+        "totalRow":[
+            {
+                "total":5,  //总数
+                "delayed":0, //延时完成数
+                "onTime":0   //按时完成数
+            }
+        ]
+    },
+    "error":null,
+    "errorCode":0,
+    "success":true
+}
+
+
+         
+         
